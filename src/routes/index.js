@@ -12,8 +12,10 @@ const Stack = createStackNavigator();
 const Routes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Cadastro Pessoal" component={SingUpPage} options={{
+      <Stack.Navigator initialRouteName="CadastroPessoal">
+        <Stack.Screen options={{ headerShown: false }} name="IntroPage" component={IntroPage} />
+        
+        <Stack.Screen name="CadastroPessoal" component={SingUpPage} options={{
           title: 'Cadastro Pessoal',
           headerStyle: {
             backgroundColor: '#cfe9e5',
@@ -24,7 +26,6 @@ const Routes = () => {
           },
         }} />
 
-        <Stack.Screen options={{ headerShown: false }} name="IntroPage" component={IntroPage} />
 
         <Stack.Screen name="Login" component={LoginPage} options={{
           title: 'Login',
