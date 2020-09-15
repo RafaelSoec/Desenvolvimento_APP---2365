@@ -2,6 +2,7 @@ import React from 'react';
 
 import IntroPage from '../pages/IntroPage';
 import LoginPage from '../pages/LoginPage';
+import SingUpPage from '../pages/SignUpPage';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -12,7 +13,10 @@ const Routes = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen options={{headerShown: false}} name="IntroPage" component={IntroPage} />
+        <Stack.Screen name="Cadasto Pessoal" component={SingUpPage} />
+
+        <Stack.Screen options={{ headerShown: false }} name="IntroPage" component={IntroPage} />
+
         <Stack.Screen name="Login" component={LoginPage} options={{
           title: 'Login',
           headerStyle: {
@@ -23,6 +27,8 @@ const Routes = () => {
             fontSize: 20
           },
         }} />
+
+
       </Stack.Navigator>
     </NavigationContainer>
   )
