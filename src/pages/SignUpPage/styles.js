@@ -14,12 +14,12 @@ export const SingUpInput = styled(TextInput)`
     /* font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif; */
     color: #bdbdbd;
     width: 312px;
-    :focus{
+    /* &:focus{
         outline: none;
     }
     ::placeholder{
         color: #e6e7e8;
-    }
+    } */
 `;
 
 export const InputWrapper = styled(View)`

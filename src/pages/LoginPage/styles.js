@@ -15,13 +15,15 @@ export const LoginInput = styled(TextInput)`
     /* font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif; */
     color: #bdbdbd;
     width: 312px;
+    border-bottom-color: #e6e7e8;
+    border-bottom-width: 1px;
     /* border-bottom: 1px solid #e6e7e8; */
-    :focus{
+    /* :focus{
         outline: none;
     }
     ::placeholder{
         color: #bdbdbd;
-    }
+    } */
 `;
 
 export const SocialButton = styled(RectButton)`
