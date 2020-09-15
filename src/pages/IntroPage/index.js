@@ -15,7 +15,7 @@ import {
 } from './styles'
 import { AppLoading } from 'expo'
 
-const IntroPage = () => {
+const IntroPage = ({navigation}) => {
 
   let [fontsLoaded] = useFonts({
     Courgette_400Regular,
@@ -50,7 +50,7 @@ const IntroPage = () => {
           CADASTRAR ANIMAL
         </ButtonText>
       </Button>
-      <LoginLink>
+      <LoginLink onPress={() => navigation.navigate('Login')}>
         <LoginText>login</LoginText>
       </LoginLink>
       <Logo source={LogoMeau}>
