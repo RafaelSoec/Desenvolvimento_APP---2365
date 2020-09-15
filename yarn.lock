@@ -1011,6 +1011,11 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.5.tgz#77211291c1900a700b8a78cfafda3160d76949ed"
   integrity sha512-OWORNpfjMsSSUBVrRBVGECkhWcULOAJz9ZW8uK9qgxD+87M7jHRcvh/A96XXNhXTLmKcoYSQtBEX7lHMO7YRwg==
 
+"@expo-google-fonts/courgette@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/courgette/-/courgette-0.1.0.tgz#75ce8c2280a0ea6a8c998d7a4ec4d1e30bc701a5"
+  integrity sha512-7Z35fMcJJkwcJmsDVRe8bw6gosWuhjmfStKSnllyV0xe7+hxgCZTjdBDm/pF5n12Fdilxhsp3CKJWmr103FTZA==
+
 "@expo/configure-splash-screen@0.1.13":
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/@expo/configure-splash-screen/-/configure-splash-screen-0.1.13.tgz#9f974146d716ffc03461e4d2deb7bfb22826e56a"
