@@ -5,14 +5,12 @@ import LoginPage from '../pages/LoginPage';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StatusBar } from 'react-native';
 
 const Stack = createStackNavigator();
 
 const Routes = () => {
   return (
     <NavigationContainer>
-      <StatusBar barStyle="light-content" backgroundColor="#88c9bf" />
       <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginPage} options={{
           title: 'Login',
@@ -21,7 +19,7 @@ const Routes = () => {
           },
           headerTintColor: '#434343',
           headerTitleStyle: {
-            fontSize: '20pt'
+            fontSize: 20
           },
         }} />
       </Stack.Navigator>

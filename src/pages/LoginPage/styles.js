@@ -6,15 +6,16 @@ export const Container = styled(View)`
     align-items: center;
     background-color: #fafafa;
     width: 100%;
+    flex: 1;
 `;
 
 export const LoginInput = styled(TextInput)`
-    padding: 8px;
-    font-size: 14pt;
-    font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 11px;
+    font-size: 14px;
+    /* font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif; */
     color: #bdbdbd;
     width: 312px;
-    border-bottom: 1px solid #e6e7e8;
+    /* border-bottom: 1px solid #e6e7e8; */
     :focus{
         outline: none;
     }
@@ -34,7 +35,7 @@ export const SocialButton = styled(RectButton)`
 `;
 
 export const ButtonText = styled(Text)`
-    font-size: 12 pt;
+    font-size: 16px;
     color: #f7f7f7;
-    font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif; */
 `;
