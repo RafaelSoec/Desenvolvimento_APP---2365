@@ -2,13 +2,24 @@ import React from 'react'
 import LogoMeau from '../../../assets/marca-meau.png';
 import {  Text  } from 'react-native'
 import { useFonts, Courgette_400Regular } from '@expo-google-fonts/courgette'
-import { Container, Greeting, AboutText, Button, ButtonText, LoginLink, LoginText, Logo } from './styles'
+import { Roboto_400Regular } from '@expo-google-fonts/roboto'
+import { 
+  Container, 
+  Greeting, 
+  AboutText, 
+  Button,   
+  ButtonText, 
+  LoginLink, 
+  LoginText, 
+  Logo 
+} from './styles'
 import { AppLoading } from 'expo'
 
 const IntroPage = () => {
 
   let [fontsLoaded] = useFonts({
     Courgette_400Regular,
+    Roboto_400Regular
   });
 
   if( !fontsLoaded ) {
