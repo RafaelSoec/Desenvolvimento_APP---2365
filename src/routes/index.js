@@ -13,7 +13,16 @@ const Routes = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Cadasto Pessoal" component={SingUpPage} />
+        <Stack.Screen name="Cadastro Pessoal" component={SingUpPage} options={{
+          title: 'Cadastro Pessoal',
+          headerStyle: {
+            backgroundColor: '#cfe9e5',
+          },
+          headerTintColor: '#434343',
+          headerTitleStyle: {
+            fontSize: 20
+          },
+        }} />
 
         <Stack.Screen options={{ headerShown: false }} name="IntroPage" component={IntroPage} />
 

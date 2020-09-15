@@ -1,13 +1,11 @@
-import { View, Button, TextInput, Text } from "react-native";
+import { View, Button, TextInput, Text, ScrollView } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import styled from "styled-components";
 
-export const Container = styled(View)`
-    align-items: center;
+export const Container = styled(ScrollView)`
     background-color: #fafafa;
     padding: 16px;
     width: 100%;
-    flex: 1;
 `;
 
 export const SingUpInput = styled(TextInput)`
@@ -25,8 +23,9 @@ export const SingUpInput = styled(TextInput)`
 `;
 
 export const InputWrapper = styled(View)`
-    border-bottom: 1px solid #e6e7e8;
-    margin-bottom: 36px;
+    border-bottom-width: 1px;
+    border-bottom-color: #e6e7e8;
+    margin-bottom: 36px; 
 `;
 
 export const SingUpButton = styled(RectButton)`

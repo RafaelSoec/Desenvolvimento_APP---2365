@@ -10,11 +10,10 @@ import {
     SingUpButton,
     ButtonText
 } from './styles';
-import { Text } from 'react-native';
 
 const SignUpPage = () => {
     return (
-        <Container>
+        <Container contentContainerStyle={{alignItems: 'center'}}>
             <InfoBanner>
                 <InfoText>
                     As informações preenchidas serão divulgadas
