@@ -6,6 +6,7 @@ import LoginPage from '../pages/LoginPage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AnimalRegistrationPage from '../pages/AnimalRegistrationPage';
+import AnimalRegistrationSuccessPage from '../pages/AnimalRegistrationSuccessPage';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,16 @@ const Routes = () => {
           },
         }} />
         <Stack.Screen name="AnimalRegistration" component={AnimalRegistrationPage} options={{
+          title: 'Cadastro do Animal',
+          headerStyle: {
+            backgroundColor: '#ffd358',
+          },
+          headerTintColor: '#434343',
+          headerTitleStyle: {
+            fontSize: 20
+          },
+        }} />
+        <Stack.Screen name="AnimalRegistrationSuccess" component={AnimalRegistrationSuccessPage} options={{
           title: 'Cadastro do Animal',
           headerStyle: {
             backgroundColor: '#ffd358',

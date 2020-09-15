@@ -21,7 +21,7 @@ import {
 } from './styles';
 import CheckBox from '@react-native-community/checkbox'
 
-const AnimalRegistrationPage = () => {
+const AnimalRegistrationPage = ({navigation}) => {
 
   let [fontsLoaded] = useFonts({
     Roboto_400Regular,
@@ -277,7 +277,7 @@ const AnimalRegistrationPage = () => {
         <Label>SOBRE O ANIMAL</Label>
         <Input placeholder="Compartilhe a história do animal"></Input>
       </Form>
-      <SubmitButton>
+      <SubmitButton onPress={() => navigation.navigate('AnimalRegistrationSuccess')}>
         <SubmitButtonText>{getSubmitText()}</SubmitButtonText>
       </SubmitButton>
     </ScrollView>
