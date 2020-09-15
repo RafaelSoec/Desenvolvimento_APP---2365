@@ -35,7 +35,7 @@ const IntroPage = ({navigation}) => {
         cães e gatos com facilidade.{`\n`}
         Qual o seu interesse?
       </AboutText>
-      <Button>
+      <Button activeOpacity={1}>
         <ButtonText>
           ADOTAR
         </ButtonText>
@@ -45,7 +45,7 @@ const IntroPage = ({navigation}) => {
           AJUDAR
         </ButtonText>
       </Button>
-      <Button>
+      <Button onPress={() => navigation.navigate('AnimalRegistration')}>
         <ButtonText>
           CADASTRAR ANIMAL
         </ButtonText>
