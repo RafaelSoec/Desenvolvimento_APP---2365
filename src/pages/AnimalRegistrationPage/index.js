@@ -59,7 +59,9 @@ const AnimalRegistrationPage = () => {
 
 
   return (
-    <ScrollView contentContainerStyle={{ alignItems: 'center', backgroundColor: '#fff' }}>
+    <ScrollView 
+      contentContainerStyle={{ alignItems: 'center', backgroundColor: '#fff', paddingBottom: 16 }}
+    >
       <IntroText>Tenho interesse em cadastrar o animal para:</IntroText>
       <Options>
         <OptionButton

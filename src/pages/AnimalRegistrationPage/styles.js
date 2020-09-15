@@ -1,10 +1,6 @@
 import { Text, ScrollView, View, TouchableOpacity, TextInput } from 'react-native';
 import styled from 'styled-components';
 
-export const Container = styled(ScrollView)`
-
-`;
-
 export const IntroText = styled(Text)`
   margin: 16px 0;
   font-size: 16px;
@@ -57,7 +53,8 @@ export const Input = styled(TextInput)`
   margin-top: 20px;
   font-family: 'Roboto_400Regular';
   font-size: 19px;
-  border: 1px solid #000;
+  border-bottom-color: #e6e7e8;
+  border-bottom-width: 1px;
 `;
   
 export const Upload = styled(View)`
