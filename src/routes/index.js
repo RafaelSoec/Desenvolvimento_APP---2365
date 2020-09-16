@@ -8,19 +8,31 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AnimalRegistrationPage from '../pages/AnimalRegistrationPage';
 import AnimalRegistrationSuccessPage from '../pages/AnimalRegistrationSuccessPage';
+import AccesDeniedPage from '../pages/AcessDeniedPage';
 
 const Stack = createStackNavigator();
 
 const Routes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="CadastroPessoal">
+      <Stack.Navigator initialRouteName="IntroPage">
         <Stack.Screen options={{ headerShown: false }} name="IntroPage" component={IntroPage} />
         
+        <Stack.Screen name="AcessDeniedPage" component={AccesDeniedPage} options={{
+          title: 'Cadastro',
+          headerStyle: {
+            backgroundColor: '#88c9bf',
+          },
+          headerTintColor: '#434343',
+          headerTitleStyle: {
+            fontSize: 20
+          },
+        }} />
+
         <Stack.Screen name="CadastroPessoal" component={SingUpPage} options={{
           title: 'Cadastro Pessoal',
           headerStyle: {
-            backgroundColor: '#cfe9e5',
+            backgroundColor: '#88c9bf',
           },
           headerTintColor: '#434343',
           headerTitleStyle: {
@@ -32,7 +44,7 @@ const Routes = () => {
         <Stack.Screen name="Login" component={LoginPage} options={{
           title: 'Login',
           headerStyle: {
-            backgroundColor: '#cfe9e5',
+            backgroundColor: '#88c9bf',
           },
           headerTintColor: '#434343',
           headerTitleStyle: {

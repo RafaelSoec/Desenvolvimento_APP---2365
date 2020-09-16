@@ -40,7 +40,7 @@ const IntroPage = ({navigation}) => {
           ADOTAR
         </ButtonText>
       </Button>
-      <Button>
+      <Button onPress={() => navigation.navigate('AcessDeniedPage')}>
         <ButtonText>
           AJUDAR
         </ButtonText>
