@@ -73,6 +73,7 @@ export const ItemOptions = styled(View)`
 export const SubItemOptions = styled(View)`
   margin-top: 20px;
   flex-direction: row;
+  align-items: center;
   margin-left: 40px;
 `;
 

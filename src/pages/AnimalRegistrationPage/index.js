@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useFonts, Roboto_400Regular, Roboto_500Medium } from '@expo-google-fonts/roboto'
 import { Text, ScrollView } from 'react-native'
-import { } from 'react'
 import { AppLoading } from 'expo'
 import {
   IntroText,
@@ -19,7 +18,8 @@ import {
   SubmitButton,
   SubmitButtonText
 } from './styles';
-import CheckBox from '@react-native-community/checkbox'
+// import CheckBox from '@react-native-community/checkbox'
+import {RadioButton, Checkbox} from 'react-native-paper'
 
 const AnimalRegistrationPage = ({navigation}) => {
 
@@ -118,69 +118,69 @@ const AnimalRegistrationPage = ({navigation}) => {
 
         <Label>ESPÉCIE</Label>
         <ItemOptions>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <RadioButton status='disabled' />
           <Item>Cachorro</Item>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <RadioButton status='disabled' />
           <Item>Gato</Item>
         </ItemOptions>
 
         <Label>SEXO</Label>
         <ItemOptions>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <RadioButton status='disabled' />
           <Item>Macho</Item>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <RadioButton status='disabled' />
           <Item>Fêmea</Item>
         </ItemOptions>
 
         <Label>PORTE</Label>
         <ItemOptions>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <RadioButton status='disabled' />
           <Item>Pequeno</Item>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <RadioButton status='disabled' />
           <Item>Médio</Item>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <RadioButton status='disabled' />
           <Item>Grande</Item>
         </ItemOptions>
 
         <Label>IDADE</Label>
         <ItemOptions>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <RadioButton status='disabled' />
           <Item>Filhote</Item>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <RadioButton status='disabled' />
           <Item>Adulto</Item>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <RadioButton status='disabled' />
           <Item>Idoso</Item>
         </ItemOptions>
 
         <Label>TEMPERAMENTO</Label>
         <ItemOptions>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <Checkbox status='unchecked'/>
           <Item>Brincalhão</Item>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <Checkbox status='unchecked'/>
           <Item>Tímido</Item>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <Checkbox status='unchecked'/>
           <Item>Calmo</Item>
         </ItemOptions>
         <ItemOptions>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <Checkbox status='unchecked'/>
           <Item>Guarda</Item>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <Checkbox status='unchecked'/>
           <Item>Amoroso</Item>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <Checkbox status='unchecked'/>
           <Item>Preguiçoso</Item>
         </ItemOptions>
 
         <Label>SAÚDE</Label>
         <ItemOptions>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <Checkbox status='unchecked'/>
           <Item>Vacinado</Item>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <Checkbox status='unchecked'/>
           <Item>Vermifugado</Item>
         </ItemOptions>
         <ItemOptions>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <Checkbox status='unchecked'/>
           <Item>Castrado</Item>
-          <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+          <Checkbox status='unchecked'/>
           <Item>Doente</Item>
         </ItemOptions>
         <Input placeholder="Doenças do animal"></Input>
@@ -189,27 +189,27 @@ const AnimalRegistrationPage = ({navigation}) => {
           <>
             <Label>EXIGÊNCIAS PARA APADRINHAMENTO</Label>
             <ItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>Termo de apadrinhamento</Item>
             </ItemOptions>
             <ItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>Auxílio financeiro</Item>
             </ItemOptions>
             <SubItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>Alimentação</Item>
             </SubItemOptions>
             <SubItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>Saúde</Item>
             </SubItemOptions>
             <SubItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>Objetos</Item>
             </SubItemOptions>
             <ItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>Visitas ao animal</Item>
             </ItemOptions>
           </>
@@ -219,31 +219,31 @@ const AnimalRegistrationPage = ({navigation}) => {
           <>
             <Label>EXIGÊNCIAS PARA ADOÇÃO</Label>
             <ItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>Termo de adoção</Item>
             </ItemOptions>
             <ItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>Fotos da casa</Item>
             </ItemOptions>
             <ItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>Visita prévia ao animal</Item>
             </ItemOptions>
             <ItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>Acompanhamento pós adoção</Item>
             </ItemOptions>
             <SubItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>1 mês</Item>
             </SubItemOptions>
             <SubItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>3 meses</Item>
             </SubItemOptions>
             <SubItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>6 meses</Item>
             </SubItemOptions>
           </>
@@ -254,20 +254,20 @@ const AnimalRegistrationPage = ({navigation}) => {
             <FormSectionTitle>Ajudar</FormSectionTitle>
             <Label>Necessidades do animal</Label>
             <ItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>Alimento</Item>
             </ItemOptions>
             <ItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>Auxílio financeiro</Item>
             </ItemOptions>
             <ItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>Medicamento</Item>
             </ItemOptions>
             <Input placeholder="Nome do medicamento"/>
             <ItemOptions>
-              <CheckBox boxType={'circle'} hideBox={true} value={false} onValueChange={() => { }} />
+              <Checkbox status='unchecked'/>
               <Item>Objetos</Item>
             </ItemOptions>
             <Input placeholder="Especifique os objetos"/>
