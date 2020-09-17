@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useFonts, Roboto_400Regular, Roboto_500Medium } from '@expo-google-fonts/roboto'
 import { Text, ScrollView } from 'react-native'
 import { AppLoading } from 'expo'
 import {
@@ -23,19 +22,11 @@ import {RadioButton, Checkbox} from 'react-native-paper'
 
 const AnimalRegistrationPage = ({navigation}) => {
 
-  let [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-    Roboto_500Medium
-  });
   const [selectedOptions, setSelectedOptions] = useState({
     ajuda: false,
     adocao: true,
     apadrinhar: false
   });
-
-  if (!fontsLoaded) {
-    return <AppLoading />
-  }
 
   const getSubmitText = () => {
     if (selectedOptions.apadrinhar) {

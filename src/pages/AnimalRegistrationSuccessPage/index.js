@@ -7,21 +7,11 @@ import {
   MyPetsButton,
   MyPetsButtonText
 } from './styles'
-import {useFonts, Courgette_400Regular} from '@expo-google-fonts/courgette';
 import {Roboto_400Regular} from '@expo-google-fonts/roboto';
 import {AppLoading} from 'expo';
 
 const AnimalRegistrationSuccessPage = () => {
-
-  let [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-    Courgette_400Regular
-  });
-
-  if (!fontsLoaded) {
-    return <AppLoading />
-  }
-
+  
   return (
     <Container>
       <Alert>Eba!</Alert>
