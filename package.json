@@ -11,7 +11,11 @@
     "@expo-google-fonts/courgette": "^0.1.0",
     "@expo-google-fonts/roboto": "^0.1.0",
     "@react-native-community/masked-view": "0.1.10",
+<<<<<<< HEAD
     "@react-native-firebase/app": "^8.4.3",
+=======
+    "@react-navigation/drawer": "^5.9.0",
+>>>>>>> ab7790ace7bfa03d3cb6e2b602f818b60ba2fbad
     "@react-navigation/native": "^5.7.3",
     "@react-navigation/stack": "^5.9.0",
     "expo": "~38.0.8",
@@ -26,6 +30,7 @@
     "react-native-reanimated": "~1.9.0",
     "react-native-safe-area-context": "~3.0.7",
     "react-native-screens": "~2.9.0",
+    "react-native-vector-icons": "^7.1.0",
     "react-native-web": "~0.11.7",
     "styled-components": "^5.2.0",
     "yarn": "^1.22.5"
