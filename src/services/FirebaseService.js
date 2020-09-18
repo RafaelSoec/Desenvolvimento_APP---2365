@@ -17,4 +17,11 @@ export class FirebaseService {
         return query;
     };
 
+    static getGoogleProvider = () => {
+        return new firebase.auth.GoogleAuthProvider();
+    };
+
+    static getFacebookProvider = () => {
+        return new firebase.auth.FacebookAuthProvider();
+    };
 }

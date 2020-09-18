@@ -2,16 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Routes from './src/routes';
-<<<<<<< HEAD
-import firebase from 'firebase';
-
-export default function App() {
-  firebase.initializeApp(firebaseConfig);
-  
-=======
 import { AppLoading } from 'expo'
 import { useFonts, Courgette_400Regular } from '@expo-google-fonts/courgette'
 import { Roboto_400Regular, Roboto_500Medium } from '@expo-google-fonts/roboto'
+import firebase  from 'firebase'
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -23,7 +17,8 @@ export default function App() {
   if( !fontsLoaded ) {
     return <AppLoading/>
   }
->>>>>>> ab7790ace7bfa03d3cb6e2b602f818b60ba2fbad
+
+  firebase.initializeApp(firebaseConfig);
   return (
     <Routes />
   )
@@ -39,7 +34,7 @@ const styles = StyleSheet.create({
 });
 
 
-const firebaseConfig= {
+const firebaseConfig = {
   apiKey: "AIzaSyBjTTdAQWXbKw78BiH3qSSk51zM2OWtZL4",
   authDomain: "meau-61777.firebaseapp.com",
   databaseURL: "https://meau-61777.firebaseio.com",

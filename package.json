@@ -11,11 +11,8 @@
     "@expo-google-fonts/courgette": "^0.1.0",
     "@expo-google-fonts/roboto": "^0.1.0",
     "@react-native-community/masked-view": "0.1.10",
-<<<<<<< HEAD
     "@react-native-firebase/app": "^8.4.3",
-=======
     "@react-navigation/drawer": "^5.9.0",
->>>>>>> ab7790ace7bfa03d3cb6e2b602f818b60ba2fbad
     "@react-navigation/native": "^5.7.3",
     "@react-navigation/stack": "^5.9.0",
     "expo": "~38.0.8",
