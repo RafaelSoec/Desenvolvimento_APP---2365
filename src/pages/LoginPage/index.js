@@ -28,7 +28,7 @@ const LoginPage = () => {
                 </ButtonText>
             </SocialButton>
             <SocialButton style={{ backgroundColor: "#f15f5c" }}>
-                <ButtonText>git ad
+                <ButtonText>
                     Entrar com o Google
                 </ButtonText>
             </SocialButton>
