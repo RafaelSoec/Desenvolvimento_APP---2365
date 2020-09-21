@@ -26,7 +26,7 @@ const Menu = ({navigation}) => {
           title="Nome do usuario" 
           style={{backgroundColor: '#88c9bf' }}>
           <ListItem title="Meu perfil" />
-          <ListItem title="Meus pets" />
+          <ListItem title="Meus pets" onPress={() => navigation.navigate('MyPets')}/>
           <ListItem title="Favoritos" />
           <ListItem title="Chat" />
         </Accordion>
