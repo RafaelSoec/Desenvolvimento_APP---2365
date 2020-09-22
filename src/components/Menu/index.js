@@ -37,7 +37,7 @@ const Menu = ({navigation}) => {
           style={{backgroundColor: '#fee29b' }}>
           <ListItem title="Cadastrar um pet" onPress={() => navigation.navigate('AnimalRegistration')}/>
           <ListItem title="Adotar um pet" onPress={() => navigation.navigate('Adopt')} />
-          <ListItem title="Ajduar um pet" />
+          <ListItem title="Ajudar um pet" onPress={() => navigation.navigate('Help')}/>
           <ListItem title="Apadrinhar um pet" />
         </Accordion>
         <Accordion

@@ -11,6 +11,7 @@ import LoginPage from '../pages/LoginPage';
 import SingUpPage from '../pages/SignUpPage';
 import MyPetsPage from '../pages/MyPetsPage';
 import AdoptPage from '../pages/AdoptPage';
+import HelpPage from '../pages/HelpPage';
 
 const Stack = createStackNavigator();
 
@@ -69,6 +70,32 @@ const StackRoutes = ({navigation}) => {
 
       <Stack.Screen name="Adopt" component={AdoptPage} options={{
         title: 'Adotar',
+        headerLeft: () => (
+          <Icon 
+            name='bars' 
+            size={24} 
+            onPress={() => navigation.toggleDrawer()} 
+            style={{marginLeft: 20, color: '#434343'}} 
+          />
+        ),
+        headerRight: () => (
+          <Icon
+            name='search'
+            size={24} 
+            style={{marginRight: 20, color: '#434343'}}
+          />
+        ),
+        headerStyle: {
+          backgroundColor: '#ffd358',
+        },
+        headerTintColor: '#434343',
+        headerTitleStyle: {
+          fontSize: 20
+        },
+      }} />
+
+      <Stack.Screen name="Help" component={HelpPage} options={{
+        title: 'Ajudar',
         headerLeft: () => (
           <Icon 
             name='bars' 
