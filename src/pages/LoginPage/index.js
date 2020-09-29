@@ -2,11 +2,9 @@ import React from "react";
 import { StatusBar } from 'react-native';
 import { TextInput } from "react-native-gesture-handler";
 import { Container, SocialButton, ButtonText, LoginInput } from "./styles";
-import {FirebaseService} from '../../services/FirebaseService.js';
 
     
 const LoginPage = () => {
-    FirebaseService.getDataList('usuario', dataIn => console.log(`result: `, dataIn));
 
     return (
         <Container>

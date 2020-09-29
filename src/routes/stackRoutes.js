@@ -6,6 +6,7 @@ import AnimalRegistrationSuccessPage from '../pages/AnimalRegistrationSuccessPag
 import AccesDeniedPage from '../pages/AcessDeniedPage';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
+import AssistPage from '../pages/AssistPage';
 import IntroPage from '../pages/IntroPage';
 import LoginPage from '../pages/LoginPage';
 import SingUpPage from '../pages/SignUpPage';
@@ -178,8 +179,19 @@ const StackRoutes = ({navigation}) => {
           fontSize: 20
         },
       }} />
+      <Stack.Screen name="AssistPage" component={AssistPage} options={{
+        title: 'Cadastro do Animal',
+        headerStyle: {
+          backgroundColor: '#ffd358',
+        },
+        headerTintColor: '#434343',
+        headerTitleStyle: {
+          fontSize: 20
+        },
+      }} />
     </Stack.Navigator>
   )
 }
 
 export default StackRoutes
+

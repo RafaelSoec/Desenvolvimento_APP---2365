@@ -41,3 +41,8 @@ export const ButtonText = styled(Text)`
     color: #f7f7f7;
     /* font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif; */
 `;
+
+
+export const backgroundMiau = styled(Text)`
+    color: #434343;
+`;
