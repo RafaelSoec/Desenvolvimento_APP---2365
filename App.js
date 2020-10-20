@@ -19,7 +19,9 @@ export default function App() {
     return <AppLoading/>
   }
 
-  firebase.initializeApp(firebaseConfig);
+  const app = firebase.initializeApp(firebaseConfig);
+  // firebase.firestore(app);
+
   return (
     <Routes />
   )

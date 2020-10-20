@@ -10,8 +10,8 @@ export default class AssistPage extends Component {
   }
 
   async componentWillMount() {
-    await FirebaseService.getDataList('animal', listAnimals => {
-      this.setState({listAnimals: listAnimals});
+    await FirebaseService.getDataFirestore('animal', listAnimals => {
+      console.log("ot", listAnimals)
     });
   }
 
