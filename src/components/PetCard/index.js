@@ -3,7 +3,38 @@ import {Container, Header, PetName, PetImage, PetInfo, AboutPet, Location, About
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { Image, Text, View } from 'react-native'
 
-const PetCard = ({name, about, location}) => {
+const PetCard = ({name, age, sex, location, size}) => {
+
+  const defineSize = (sexo) => {
+    if(sexo == 'M'){
+      return 'MÉDIO';
+    }
+    else if(sexo == 'G'){
+      return 'GRANDE';
+    }
+    else{
+      return 'PEQUENO';
+    }
+  }
+
+  const defineSex = (sexo) => {
+    if(sexo == 'M'){
+      return 'MACHO';
+    }else{
+      return 'FÊMEA';
+    }
+  }
+
+  const defineYear = (idade, sexo) => {
+    if(idade < 2){
+      return 'FILHOTE';
+    }else if(idade >= 2 && idade < 4){
+      return ((sexo == 'M') ? 'ADULTO' : 'ADULTA');
+    }else{
+      return ((sexo == 'M') ? 'IDOSO' : 'IDOSA');
+    }
+  }
+
   return (
     <Container style={{ elevation: 5, borderColor: '#000' }}>
       <Header>
@@ -15,9 +46,9 @@ const PetCard = ({name, about, location}) => {
       <PetImage source={{uri: 'https://source.unsplash.com/random?dog,cat'}} />
       <PetInfo>
         <AboutPet>
-          {about.map(item => (            
-            <AboutItem key={item}>{item}</AboutItem>           
-          ))}    
+          <AboutItem>{defineSex(sex)}</AboutItem>
+          <AboutItem>{defineYear(age, sex)}</AboutItem>
+          <AboutItem>{defineSize(size)}</AboutItem>
         </AboutPet>
         <Location>{location}</Location>
       </PetInfo>
