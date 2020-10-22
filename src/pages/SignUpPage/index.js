@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react'
+import UsuarioDTO from '../../dto/UsuarioDTO';
+import { AuthService } from '../../services/AuthService.js';
+import { UsuarioService } from '../../services/UsuarioService.js';
+
 import {
     InfoBanner,
     Container,
@@ -11,66 +15,140 @@ import {
     ButtonText
 } from './styles';
 
-const SignUpPage = () => {
-    return (
-        <Container contentContainerStyle={{alignItems: 'center'}}>
-            <InfoBanner>
-                <InfoText>
-                    As informações preenchidas serão divulgadas
-                    apenas para a pessoa com a qual você realizar
-                    o processo de adoção e/ou apadrinhamento,
-                    após a formalização do processo.
+export default class SignUpPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = new UsuarioDTO();
+        this.errorMsg = "";
+        console.log(this.state)
+    }
+
+    async componentWillMount() {
+    }
+
+    setSexo = (sexo) => {
+        this.setState({ sexo: sexo });
+    }
+
+    setEmail = (email) => {
+        this.setState({ email: email });
+    }
+
+    setEstado = (estado) => {
+        this.setState({ estado: estado });
+    }
+
+    setImagem = (imagem) => {
+        this.setState({ imagem: imagem });
+    }
+
+    setMunicipio = (municipio) => {
+        this.setState({ municipio: municipio });
+    }
+
+    setNascimento = (nascimento) => {
+        this.setState({ nascimento: nascimento });
+    }
+
+    setNome = (nome) => {
+        this.setState({ nome: nome });
+    }
+
+    setCpf = (cpf) => {
+        this.setState({ cpf: cpf });
+    }
+
+    setSenha = (senha) => {
+        this.setState({ senha: senha });
+    }
+
+    setLogradouro = (logradouro) => {
+        this.setState({ logradouro: logradouro });
+    }
+
+    setTelefone = (telefone) => {
+        this.setState({ telefone: telefone });
+    }
+
+    confirmPassword = (senha) => {
+        if(senha === this.state.senha){
+            this.errorMsg = `Senhas diferentes.`;
+        }
+    }
+
+    signUp = () => {
+        AuthService.createUser(this.state.email, this.state.senha, res => {
+            console.log(res.message);
+            if(res.result){
+                UsuarioService.addUsuario(this.state, callback => {
+                    this.props.navigation.navigate('LoginPage');
+                })
+            }
+        });
+    }
+
+    render() {
+        return (
+            <Container contentContainerStyle={{ alignItems: 'center' }}>
+                <InfoBanner>
+                    <InfoText>
+                        As informações preenchidas serão divulgadas
+                        apenas para a pessoa com a qual você realizar
+                        o processo de adoção e/ou apadrinhamento,
+                        após a formalização do processo.
                 </InfoText>
-            </InfoBanner>
-            <Header>
-                INFORMAÇÕES PESSOAIS
+                </InfoBanner>
+                <Header>
+                    INFORMAÇÕES PESSOAIS
             </Header>
-            <InputWrapper>
-                <SingUpInput placeholder="Nome Completo" />
-            </InputWrapper>
-            <InputWrapper>
-                <SingUpInput placeholder="Idade" />
-            </InputWrapper>
-            <InputWrapper>
-                <SingUpInput placeholder="E-mail" />
-            </InputWrapper>
-            <InputWrapper>
-                <SingUpInput placeholder="Estado" />
-            </InputWrapper>
-            <InputWrapper>
-                <SingUpInput placeholder="Cidade" />
-            </InputWrapper>
-            <InputWrapper>
-                <SingUpInput placeholder="Endereço" />
-            </InputWrapper>
-            <InputWrapper>
-                <SingUpInput placeholder="Telefone" />
-            </InputWrapper>
-            <Header>
-                INFORMAÇÕES DE PERFIL
+                <InputWrapper>
+                    <SingUpInput placeholder="Nome Completo" onChangeText={this.setNome} />
+                </InputWrapper>
+                <InputWrapper>
+                    <SingUpInput placeholder="CPF" onChangeText={this.setCpf} />
+                </InputWrapper>
+                <InputWrapper>
+                    <SingUpInput placeholder="Gênero" onChangeText={this.setSexo} />
+                </InputWrapper>
+                <InputWrapper>
+                    <SingUpInput placeholder="Data de Nascimento" onChangeText={this.setNascimento} />
+                </InputWrapper>
+                <InputWrapper>
+                    <SingUpInput placeholder="Estado" onChangeText={this.setEstado}/>
+                </InputWrapper>
+                <InputWrapper>
+                    <SingUpInput placeholder="Municipio" onChangeText={this.setMunicipio}/>
+                </InputWrapper>
+                <InputWrapper>
+                    <SingUpInput placeholder="Logradouro" onChangeText={this.setLogradouro}/>
+                </InputWrapper>
+                <InputWrapper>
+                    <SingUpInput placeholder="Telefone" onChangeText={this.setTelefone}/>
+                </InputWrapper>
+                <Header>
+                    INFORMAÇÕES DE PERFIL
             </Header>
-            <InputWrapper>
-                <SingUpInput placeholder="Nome de Usuário" />
-            </InputWrapper>
-            <InputWrapper>
-                <SingUpInput placeholder="Senha" />
-            </InputWrapper>
-            <InputWrapper>
-                <SingUpInput placeholder="Confirmação de senha" />
-            </InputWrapper>
-            <Header>
-                FOTO DE PERFIL
+                <InputWrapper>
+                    <SingUpInput placeholder="Nome de Usuário" onChangeText={this.setEmail}/>
+                </InputWrapper>
+                <InputWrapper>
+                    <SingUpInput placeholder="Senha" onChangeText={this.setSenha}/>
+                </InputWrapper>
+                <InputWrapper>
+                    <SingUpInput placeholder="Confirmação de senha" onChangeText={this.confirmPassword}/>
+                </InputWrapper>
+                <Header>
+                    FOTO DE PERFIL
             </Header>
-            <PhotoFrame>
+                <PhotoFrame>
 
-            </PhotoFrame>
-            <SingUpButton>
-                <ButtonText>
-                    FAZER CADASTRO
+                </PhotoFrame>
+                <SingUpButton onPress={() => this.signUp()}>
+                    <ButtonText>
+                        FAZER CADASTRO
                 </ButtonText>
-            </SingUpButton>
-        </Container>
-    )
+                </SingUpButton>
+            </Container>
+        );
+    }
 }
-
-export default SignUpPage;

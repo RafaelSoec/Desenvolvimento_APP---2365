@@ -39,9 +39,9 @@ const IntroPage = ({navigation}) => {
           CADASTRAR ANIMAL
         </ButtonText>
       </Button>
-      <LoginLink onPress={() => navigation.navigate('Login')}>
+      {/* <LoginLink onPress={() => navigation.navigate('Login')}>
         <LoginText>login</LoginText>
-      </LoginLink>
+      </LoginLink> */}
       <Logo source={LogoMeau}>
 
       </Logo>

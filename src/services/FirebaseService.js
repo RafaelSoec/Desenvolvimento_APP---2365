@@ -24,12 +24,22 @@ export class FirebaseService {
         .get().then((querySnapshot) => {
             let items = [];
             querySnapshot.forEach((doc) => {
-                items.push({id: doc.id, data: doc.data()});
+                var data = doc.data();
+                data["id"] = doc.id;
+                items.push(data);
             });
             callback(items);
         });
 
         return query;
+    };
+
+    //procura por um id, caso nao ache retorna null
+    static findById = (nodePath, id, callback) => {
+        firebase.firestore().collection(nodePath)
+        .doc(id).get().then((doc) => {
+            callback((doc.data() ? doc.data(): null));
+        });
     };
 
     static getGoogleProvider = () => {

@@ -17,10 +17,35 @@ import PatronizePage from '../pages/PatronizePage';
 
 const Stack = createStackNavigator();
 
-const StackRoutes = ({navigation}) => {
+const StackRoutes = ({ navigation }) => {
   return (
-    <Stack.Navigator initialRouteName="IntroPage">
+    <Stack.Navigator initialRouteName="LoginPage">
       <Stack.Screen options={{ headerShown: false }} name="IntroPage" component={IntroPage} />
+
+
+      <Stack.Screen name="LoginPage" component={LoginPage} options={{
+        headerShown: false,
+        title: 'Login',
+        headerStyle: {
+          backgroundColor: '#88c9bf',
+        },
+        headerTintColor: '#434343',
+        headerTitleStyle: {
+          fontSize: 20
+        },
+      }} />
+
+      <Stack.Screen name="SignUpPage" component={SingUpPage} options={{
+        headerShown: false,
+        title: 'Cadastro',
+        headerStyle: {
+          backgroundColor: '#ffd358',
+        },
+        headerTintColor: '#434343',
+        headerTitleStyle: {
+          fontSize: 20
+        },
+      }} />
 
       <Stack.Screen name="AcessDeniedPage" component={AccesDeniedPage} options={{
         title: 'Cadastro',
@@ -47,18 +72,18 @@ const StackRoutes = ({navigation}) => {
       <Stack.Screen name="MyPets" component={MyPetsPage} options={{
         title: 'Meus Pets',
         headerLeft: () => (
-          <Icon 
-            name='bars' 
-            size={24} 
-            onPress={() => navigation.toggleDrawer()} 
-            style={{marginLeft: 20, color: '#434343'}} 
+          <Icon
+            name='bars'
+            size={24}
+            onPress={() => navigation.toggleDrawer()}
+            style={{ marginLeft: 20, color: '#434343' }}
           />
         ),
         headerRight: () => (
           <Icon
             name='search'
-            size={24} 
-            style={{marginRight: 20, color: '#434343'}}
+            size={24}
+            style={{ marginRight: 20, color: '#434343' }}
           />
         ),
         headerStyle: {
@@ -73,18 +98,18 @@ const StackRoutes = ({navigation}) => {
       <Stack.Screen name="Adopt" component={AdoptPage} options={{
         title: 'Adotar',
         headerLeft: () => (
-          <Icon 
-            name='bars' 
-            size={24} 
-            onPress={() => navigation.toggleDrawer()} 
-            style={{marginLeft: 20, color: '#434343'}} 
+          <Icon
+            name='bars'
+            size={24}
+            onPress={() => navigation.toggleDrawer()}
+            style={{ marginLeft: 20, color: '#434343' }}
           />
         ),
         headerRight: () => (
           <Icon
             name='search'
-            size={24} 
-            style={{marginRight: 20, color: '#434343'}}
+            size={24}
+            style={{ marginRight: 20, color: '#434343' }}
           />
         ),
         headerStyle: {
@@ -99,18 +124,18 @@ const StackRoutes = ({navigation}) => {
       <Stack.Screen name="Help" component={HelpPage} options={{
         title: 'Ajudar',
         headerLeft: () => (
-          <Icon 
-            name='bars' 
-            size={24} 
-            onPress={() => navigation.toggleDrawer()} 
-            style={{marginLeft: 20, color: '#434343'}} 
+          <Icon
+            name='bars'
+            size={24}
+            onPress={() => navigation.toggleDrawer()}
+            style={{ marginLeft: 20, color: '#434343' }}
           />
         ),
         headerRight: () => (
           <Icon
             name='search'
-            size={24} 
-            style={{marginRight: 20, color: '#434343'}}
+            size={24}
+            style={{ marginRight: 20, color: '#434343' }}
           />
         ),
         headerStyle: {
@@ -125,18 +150,18 @@ const StackRoutes = ({navigation}) => {
       <Stack.Screen name="Patronize" component={PatronizePage} options={{
         title: 'Apadrinhar',
         headerLeft: () => (
-          <Icon 
-            name='bars' 
-            size={24} 
-            onPress={() => navigation.toggleDrawer()} 
-            style={{marginLeft: 20, color: '#434343'}} 
+          <Icon
+            name='bars'
+            size={24}
+            onPress={() => navigation.toggleDrawer()}
+            style={{ marginLeft: 20, color: '#434343' }}
           />
         ),
         headerRight: () => (
           <Icon
             name='search'
-            size={24} 
-            style={{marginRight: 20, color: '#434343'}}
+            size={24}
+            style={{ marginRight: 20, color: '#434343' }}
           />
         ),
         headerStyle: {
@@ -148,17 +173,6 @@ const StackRoutes = ({navigation}) => {
         },
       }} />
 
-
-      <Stack.Screen name="Login" component={LoginPage} options={{
-        title: 'Login',
-        headerStyle: {
-          backgroundColor: '#88c9bf',
-        },
-        headerTintColor: '#434343',
-        headerTitleStyle: {
-          fontSize: 20
-        },
-      }} />
       <Stack.Screen name="AnimalRegistration" component={AnimalRegistrationPage} options={{
         title: 'Cadastro do Animal',
         headerStyle: {

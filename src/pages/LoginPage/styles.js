@@ -2,6 +2,12 @@ import { View, Button, TextInput, Text } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import styled from "styled-components";
 
+export const Logo = styled(Image)`
+  height: 44px;
+  width: 122px;
+  margin-bottom: 32px;
+`;
+
 export const Container = styled(View)`
     align-items: center;
     background-color: #fafafa;
