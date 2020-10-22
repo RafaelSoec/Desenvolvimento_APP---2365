@@ -71,7 +71,7 @@ export default class SignUpPage extends Component {
     }
 
     confirmPassword = (senha) => {
-        if(senha === this.state.senha){
+        if (senha === this.state.senha) {
             this.errorMsg = `Senhas diferentes.`;
         }
     }
@@ -79,7 +79,7 @@ export default class SignUpPage extends Component {
     signUp = () => {
         AuthService.createUser(this.state.email, this.state.senha, res => {
             console.log(res.message);
-            if(res.result){
+            if (res.result) {
                 UsuarioService.addUsuario(this.state, callback => {
                     this.props.navigation.navigate('LoginPage');
                 })
@@ -114,28 +114,28 @@ export default class SignUpPage extends Component {
                     <SingUpInput placeholder="Data de Nascimento" onChangeText={this.setNascimento} />
                 </InputWrapper>
                 <InputWrapper>
-                    <SingUpInput placeholder="Estado" onChangeText={this.setEstado}/>
+                    <SingUpInput placeholder="Estado" onChangeText={this.setEstado} />
                 </InputWrapper>
                 <InputWrapper>
-                    <SingUpInput placeholder="Municipio" onChangeText={this.setMunicipio}/>
+                    <SingUpInput placeholder="Municipio" onChangeText={this.setMunicipio} />
                 </InputWrapper>
                 <InputWrapper>
-                    <SingUpInput placeholder="Logradouro" onChangeText={this.setLogradouro}/>
+                    <SingUpInput placeholder="Logradouro" onChangeText={this.setLogradouro} />
                 </InputWrapper>
                 <InputWrapper>
-                    <SingUpInput placeholder="Telefone" onChangeText={this.setTelefone}/>
+                    <SingUpInput placeholder="Telefone" onChangeText={this.setTelefone} />
                 </InputWrapper>
                 <Header>
                     INFORMAÇÕES DE PERFIL
             </Header>
                 <InputWrapper>
-                    <SingUpInput placeholder="Nome de Usuário" onChangeText={this.setEmail}/>
+                    <SingUpInput placeholder="Nome de Usuário" onChangeText={this.setEmail} />
                 </InputWrapper>
                 <InputWrapper>
-                    <SingUpInput placeholder="Senha" onChangeText={this.setSenha}/>
+                    <SingUpInput placeholder="Senha" secureTextEntry={true} onChangeText={this.setSenha} />
                 </InputWrapper>
                 <InputWrapper>
-                    <SingUpInput placeholder="Confirmação de senha" onChangeText={this.confirmPassword}/>
+                    <SingUpInput placeholder="Confirmação de senha" secureTextEntry={true} onChangeText={this.confirmPassword} />
                 </InputWrapper>
                 <Header>
                     FOTO DE PERFIL
