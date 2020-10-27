@@ -118,46 +118,46 @@ export default class SignUpPage extends Component {
                     {formikProps => (
                         <>
                             <InputWrapper>
-                                <SingUpInput placeholder="Nome Completo" onBlur={formikProps.handleChange('nome')} />
+                                <SingUpInput placeholder="Nome Completo" onChangeText={formikProps.handleChange('nome')} />
                                 <MaterialIcons name="done" size={30} color={formikProps.errors.nome ? "#fafafa" : "#88c9bf"} />
                             </InputWrapper>
                             <InputWrapper>
-                                <SingUpInput placeholder="Idade" onBlur={formikProps.handleChange('idade')} />
+                                <SingUpInput placeholder="Idade" onChangeText={formikProps.handleChange('idade')} />
                                 <MaterialIcons name="done" size={30} color={formikProps.errors.idade ? "#fafafa" : "#88c9bf"} />
                             </InputWrapper>
                             <InputWrapper>
-                                <SingUpInput placeholder="Email" onBlur={formikProps.handleChange('email')} />
+                                <SingUpInput placeholder="Email" onChangeText={formikProps.handleChange('email')} />
                                 <MaterialIcons name="done" size={30} color={formikProps.errors.email ? "#fafafa" : "#88c9bf"} />
                             </InputWrapper>
                             <InputWrapper>
-                                <SingUpInput placeholder="Estado" onBlur={formikProps.handleChange('estado')} />
+                                <SingUpInput placeholder="Estado" onChangeText={formikProps.handleChange('estado')} />
                                 <MaterialIcons name="done" size={30} color={formikProps.errors.estado ? "#fafafa" : "#88c9bf"} />
                             </InputWrapper>
                             <InputWrapper>
-                                <SingUpInput placeholder="Cidade" onBlur={formikProps.handleChange('cidade')} />
+                                <SingUpInput placeholder="Cidade" onChangeText={formikProps.handleChange('cidade')} />
                                 <MaterialIcons name="done" size={30} color={formikProps.errors.cidade ? "#fafafa" : "#88c9bf"} />
                             </InputWrapper>
                             <InputWrapper>
-                                <SingUpInput placeholder="Endereço" onBlur={formikProps.handleChange('endereco')} />
+                                <SingUpInput placeholder="Endereço" onChangeText={formikProps.handleChange('endereco')} />
                                 <MaterialIcons name="done" size={30} color={formikProps.errors.endereco ? "#fafafa" : "#88c9bf"} />
                             </InputWrapper>
                             <InputWrapper>
-                                <SingUpInput placeholder="Telefone" onBlur={formikProps.handleChange('telefone')} />
+                                <SingUpInput placeholder="Telefone" onChangeText={formikProps.handleChange('telefone')} />
                                 <MaterialIcons name="done" size={30} color={formikProps.errors.telefone ? "#fafafa" : "#88c9bf"} />
                             </InputWrapper>
                             <Header>
                                 INFORMAÇÕES DE PERFIL
                             </Header>
                             <InputWrapper>
-                                <SingUpInput placeholder="Nome de Usuário" onBlur={formikProps.handleChange('usuario')} />
+                                <SingUpInput placeholder="Nome de Usuário" onChangeText={formikProps.handleChange('usuario')} />
                                 <MaterialIcons name="done" size={30} color={formikProps.errors.usuario ? "#fafafa" : "#88c9bf"} />
                             </InputWrapper>
                             <InputWrapper>
-                                <SingUpInput placeholder="Senha" secureTextEntry={true} onBlur={formikProps.handleChange('senha')} />
+                                <SingUpInput placeholder="Senha" secureTextEntry={true} onChangeText={formikProps.handleChange('senha')} />
                                 <MaterialIcons name="done" size={30} color={formikProps.errors.senha ? "#fafafa" : "#88c9bf"} />
                             </InputWrapper>
                             <InputWrapper>
-                                <SingUpInput placeholder="Confirmação de senha" secureTextEntry={true} onBlur={formikProps.handleChange('confirmarSenha')} />
+                                <SingUpInput placeholder="Confirmação de senha" secureTextEntry={true} onChangeText={formikProps.handleChange('confirmarSenha')} />
                                 <MaterialIcons name="done" size={30} color={formikProps.errors.confirmarSenha ? "#fafafa" : "#88c9bf"} />
                             </InputWrapper>
                             <Header>
