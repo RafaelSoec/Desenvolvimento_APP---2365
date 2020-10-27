@@ -1,4 +1,4 @@
-import { View, Button, TextInput, Text } from "react-native";
+import { View, Button, TextInput, Text, Image } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import styled from "styled-components";
 

@@ -20,7 +20,7 @@ export default function App() {
   }
 
   const app = firebase.initializeApp(firebaseConfig);
-  // firebase.firestore(app);
+  firebase.firestore(app);
 
   return (
     <Routes />
