@@ -13,25 +13,22 @@ export const SingUpInput = styled(TextInput)`
     font-size: 18px;
     /* font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif; */
     color: #bdbdbd;
-    width: 312px;
-    /* &:focus{
-        outline: none;
-    }
-    ::placeholder{
-        color: #e6e7e8;
-    } */
+    width: 262px;
 `;
 
 export const InputWrapper = styled(View)`
     border-bottom-width: 1px;
     border-bottom-color: #e6e7e8;
     margin-bottom: 36px; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 `;
 
 export const SingUpButton = styled(RectButton)`
     background-color: #88c9bf;
     border-radius: 2px;
-    width: 232px;
+    width: 312px;
     height: 40px;
     margin-bottom: 24px;
     align-items: center;
