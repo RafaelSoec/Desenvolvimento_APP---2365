@@ -1,7 +1,6 @@
 import React from 'react'
 import {Container, Header, PetName, PetImage, PetInfo, InfoText} from './styles'
 import Icon from 'react-native-vector-icons/FontAwesome5'
-import { Image } from 'react-native'
 
 const MyPetCard = ({name, color, sections, interested}) => {
   return (
