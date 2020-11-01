@@ -18,9 +18,9 @@ import {
   SubmitButtonText
 } from './styles';
 // import CheckBox from '@react-native-community/checkbox'
-import {RadioButton, Checkbox} from 'react-native-paper'
+import { RadioButton, Checkbox } from 'react-native-paper'
 
-const AnimalRegistrationPage = ({navigation}) => {
+const AnimalRegistrationPage = ({ navigation }) => {
 
   const [selectedOptions, setSelectedOptions] = useState({
     ajuda: false,
@@ -31,7 +31,7 @@ const AnimalRegistrationPage = ({navigation}) => {
   const getSubmitText = () => {
     if (selectedOptions.apadrinhar) {
       return 'Procurar padrinho';
-    }else if(selectedOptions.adocao) {
+    } else if (selectedOptions.adocao) {
       return 'Colocar para adoção';
     } else {
       return 'Procurar ajuda';
@@ -41,7 +41,7 @@ const AnimalRegistrationPage = ({navigation}) => {
   const getTitle = () => {
     if (selectedOptions.apadrinhar) {
       return 'Apadrinhar';
-    }else if(selectedOptions.adocao) {
+    } else if (selectedOptions.adocao) {
       return 'Adoção';
     } else {
       return 'Ajudar';
@@ -50,18 +50,17 @@ const AnimalRegistrationPage = ({navigation}) => {
 
 
   return (
-    <ScrollView 
+    <ScrollView
       contentContainerStyle={{ alignItems: 'center', backgroundColor: '#fff', paddingBottom: 16 }}
     >
       <IntroText>Tenho interesse em cadastrar o animal para:</IntroText>
       <Options>
         <OptionButton
-          disabled={selectedOptions.apadrinhar}
           style={{ backgroundColor: selectedOptions.adocao ? '#ffd358' : '#f1f2f2' }}
           onPress={() => {
             setSelectedOptions({
-              ajuda: selectedOptions.ajuda,
-              adocao: !selectedOptions.adocao,
+              ajuda: false,
+              adocao: true,
               apadrinhar: false
             });
           }}
@@ -71,14 +70,14 @@ const AnimalRegistrationPage = ({navigation}) => {
           </OptionText>
         </OptionButton>
         <OptionButton
-          disabled={selectedOptions.adocao}
           style={{ backgroundColor: selectedOptions.apadrinhar ? '#ffd358' : '#f1f2f2' }}
           onPress={() => {
             setSelectedOptions({
-              ajuda: selectedOptions.ajuda,
+              ajuda: false,
               adocao: false,
-              apadrinhar: !selectedOptions.apadrinhar
+              apadrinhar: true
             });
+            console.log(selectedOptions);
           }}
         >
           <OptionText>
@@ -89,9 +88,9 @@ const AnimalRegistrationPage = ({navigation}) => {
           style={{ backgroundColor: selectedOptions.ajuda ? '#ffd358' : '#f1f2f2' }}
           onPress={() => {
             setSelectedOptions({
-              ajuda: !selectedOptions.ajuda,
-              adocao: selectedOptions.adocao,
-              apadrinhar: selectedOptions.apadrinhar
+              ajuda: true,
+              adocao: false,
+              apadrinhar: false
             });
           }}
         >
@@ -100,6 +99,7 @@ const AnimalRegistrationPage = ({navigation}) => {
           </OptionText>
         </OptionButton>
       </Options>
+
       <Form>
         <FormSectionTitle>{getTitle()}</FormSectionTitle>
         <Label>NOME DO ANIMAL</Label>
@@ -145,33 +145,33 @@ const AnimalRegistrationPage = ({navigation}) => {
 
         <Label>TEMPERAMENTO</Label>
         <ItemOptions>
-          <Checkbox status='unchecked'/>
+          <Checkbox status='unchecked' />
           <Item>Brincalhão</Item>
-          <Checkbox status='unchecked'/>
+          <Checkbox status='unchecked' />
           <Item>Tímido</Item>
-          <Checkbox status='unchecked'/>
+          <Checkbox status='unchecked' />
           <Item>Calmo</Item>
         </ItemOptions>
         <ItemOptions>
-          <Checkbox status='unchecked'/>
+          <Checkbox status='unchecked' />
           <Item>Guarda</Item>
-          <Checkbox status='unchecked'/>
+          <Checkbox status='unchecked' />
           <Item>Amoroso</Item>
-          <Checkbox status='unchecked'/>
+          <Checkbox status='unchecked' />
           <Item>Preguiçoso</Item>
         </ItemOptions>
 
         <Label>SAÚDE</Label>
         <ItemOptions>
-          <Checkbox status='unchecked'/>
+          <Checkbox status='unchecked' />
           <Item>Vacinado</Item>
-          <Checkbox status='unchecked'/>
+          <Checkbox status='unchecked' />
           <Item>Vermifugado</Item>
         </ItemOptions>
         <ItemOptions>
-          <Checkbox status='unchecked'/>
+          <Checkbox status='unchecked' />
           <Item>Castrado</Item>
-          <Checkbox status='unchecked'/>
+          <Checkbox status='unchecked' />
           <Item>Doente</Item>
         </ItemOptions>
         <Input placeholder="Doenças do animal"></Input>
@@ -180,27 +180,27 @@ const AnimalRegistrationPage = ({navigation}) => {
           <>
             <Label>EXIGÊNCIAS PARA APADRINHAMENTO</Label>
             <ItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>Termo de apadrinhamento</Item>
             </ItemOptions>
             <ItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>Auxílio financeiro</Item>
             </ItemOptions>
             <SubItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>Alimentação</Item>
             </SubItemOptions>
             <SubItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>Saúde</Item>
             </SubItemOptions>
             <SubItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>Objetos</Item>
             </SubItemOptions>
             <ItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>Visitas ao animal</Item>
             </ItemOptions>
           </>
@@ -210,31 +210,31 @@ const AnimalRegistrationPage = ({navigation}) => {
           <>
             <Label>EXIGÊNCIAS PARA ADOÇÃO</Label>
             <ItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>Termo de adoção</Item>
             </ItemOptions>
             <ItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>Fotos da casa</Item>
             </ItemOptions>
             <ItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>Visita prévia ao animal</Item>
             </ItemOptions>
             <ItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>Acompanhamento pós adoção</Item>
             </ItemOptions>
             <SubItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>1 mês</Item>
             </SubItemOptions>
             <SubItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>3 meses</Item>
             </SubItemOptions>
             <SubItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>6 meses</Item>
             </SubItemOptions>
           </>
@@ -245,23 +245,23 @@ const AnimalRegistrationPage = ({navigation}) => {
             <FormSectionTitle>Ajudar</FormSectionTitle>
             <Label>Necessidades do animal</Label>
             <ItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>Alimento</Item>
             </ItemOptions>
             <ItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>Auxílio financeiro</Item>
             </ItemOptions>
             <ItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>Medicamento</Item>
             </ItemOptions>
-            <Input placeholder="Nome do medicamento"/>
+            <Input placeholder="Nome do medicamento" />
             <ItemOptions>
-              <Checkbox status='unchecked'/>
+              <Checkbox status='unchecked' />
               <Item>Objetos</Item>
             </ItemOptions>
-            <Input placeholder="Especifique os objetos"/>
+            <Input placeholder="Especifique os objetos" />
           </>
         )}
 

@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Alert } from 'react-native';
 import UsuarioDTO from '../../dto/UsuarioDTO';
 import { AuthService } from '../../services/AuthService.js';
 import { UsuarioService } from '../../services/UsuarioService.js';
@@ -29,7 +30,7 @@ const validationSchema = Yup.object().shape({
         .max(100, 'O nome deve conter menos de 100 letras'),
     idade: Yup.number()
         .required('Informe a idade')
-        .integer('Informe uma idade válida')
+        .integer('Informe sua idade apenas com números')
         .max(150, 'Informe uma idade válida')
         .min(18, 'Deve ser maior de idade'),
     email: Yup.string()
@@ -58,6 +59,7 @@ const validationSchema = Yup.object().shape({
         .required('Confirme a senha')
         .equals([Yup.ref('senha')], 'As senhas não conferem.')
 })
+
 
 export default class SignUpPage extends Component {
     constructor(props) {
@@ -101,8 +103,10 @@ export default class SignUpPage extends Component {
                         endereco: '', telefone: '', usuario: '', senha: ''
                     }}
                     initialErrors={{
-                        nome: true, idade: true, email: true, estado: true, cidade: true,
-                        endereco: true, telefone: true, usuario: true, senha: true
+                        nome: 'Informe o seu nome', idade: 'Informe a sua idade', email: 'Informe o seu e-mail',
+                        estado: 'Informe o seu Estado', cidade: 'Informe a sua cidade',
+                        endereco: 'Informe o seu endereço', telefone: 'Informe o seu telefone',
+                        usuario: 'Informe o nome de usuário', senha: 'Escolha uma senha', confirmarSenha: 'Confirme a senha'
                     }}
 
                     onSubmit={(values, actions) => {
@@ -174,7 +178,18 @@ export default class SignUpPage extends Component {
                                     </ButtonText>
                                 </SingUpButton>
                                 :
-                                <SingUpButton style={{ opacity: 0.4 }}>
+                                <SingUpButton style={{ opacity: 0.4 }}
+                                    onPress={() => {
+                                        let erros = '';
+                                        Object.keys(formikProps.errors).forEach(campo => {
+                                            erros += "- " + formikProps.errors[campo] + "\n"
+                                        })
+                                        Alert.alert(
+                                            "Corrija os seguintes erros: ",
+                                            erros,
+                                            [{ title: 'OK' }]
+                                        )
+                                    }}>
                                     <ButtonText>
                                         FAZER CADASTRO
                                     </ButtonText>
