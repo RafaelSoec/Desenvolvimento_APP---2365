@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Alert } from 'react-native';
+import { MaterialIcons } from 'react-native-vector-icons';
+
 import UsuarioDTO from '../../dto/UsuarioDTO';
 import { AuthService } from '../../services/AuthService.js';
 import { UsuarioService } from '../../services/UsuarioService.js';
+import { UploadPhoto } from '../../services/UploadPhoto.js';
 
-import { MaterialIcons } from 'react-native-vector-icons';
+import * as ImagePicker from 'expo-image-picker';
+import * as firebase from 'firebase';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -65,23 +69,61 @@ export default class SignUpPage extends Component {
     constructor(props) {
         super(props);
         this.state = new UsuarioDTO();
-        console.log(this.state)
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    async componentWillMount() {
-
-    }
-
-    signUp = (values) => {
+    signUp(values) {
         AuthService.createUser(values.email, values.senha, res => {
             console.log(res.message);
             if (res.result) {
+                UsuarioService.uploadPhoto(this.state.imageURI, values.email)
                 UsuarioService.addUsuario(values, callback => {
                     this.props.navigation.navigate('LoginPage');
                 })
             }
         });
     }
+
+    handleClick() {
+        Alert.alert(
+            "Foto de perfil",
+            "Selecione a sua foto de perfil",
+            [{
+                text: "Tirar foto",
+                onPress: () => { this.choosePhoto("camera").then((res) => { if (!res.cancelled) Alert.alert("Sucesso") }).catch((err) => alert(err)) },
+            },
+            {
+                text: "Escolher da biblioteca",
+                onPress: () => { this.choosePhoto("cameraRoll").then((res) => { if (!res.cancelled) Alert.alert("Sucesso") }).catch((err) => alert(err)) },
+            },
+            {
+                text: "Cancelar",
+            }]
+        )
+    }
+
+    async choosePhoto(from) {
+        if (from == "camera") {
+            await ImagePicker.getCameraPermissionsAsync();
+            var result = await ImagePicker.launchCameraAsync();
+        }
+        else {
+            var result = await ImagePicker.launchImageLibraryAsync();
+        }
+
+        if (!result.cancelled) {
+            this.setState({ imageURI: result.uri });
+        }
+        return result;
+    }
+
+    /*     async uploadPhoto(uri, imageName) {
+            const response = await fetch(uri).then(console.log("fetch com sucesso"));
+            const blob = await response.blob();
+    
+            var ref = firebase.storage().ref().child("images/" + imageName);
+            return ref.put(blob);
+        } */
 
     render() {
         return (
@@ -126,11 +168,11 @@ export default class SignUpPage extends Component {
                                 <MaterialIcons name="done" size={30} color={formikProps.errors.nome ? "#fafafa" : "#88c9bf"} />
                             </InputWrapper>
                             <InputWrapper>
-                                <SingUpInput placeholder="Idade" onChangeText={formikProps.handleChange('idade')} />
+                                <SingUpInput placeholder="Idade" keyboardType="number-pad" onChangeText={formikProps.handleChange('idade')} />
                                 <MaterialIcons name="done" size={30} color={formikProps.errors.idade ? "#fafafa" : "#88c9bf"} />
                             </InputWrapper>
                             <InputWrapper>
-                                <SingUpInput placeholder="Email" onChangeText={formikProps.handleChange('email')} />
+                                <SingUpInput placeholder="Email" keyboardType="email-address" onChangeText={formikProps.handleChange('email')} />
                                 <MaterialIcons name="done" size={30} color={formikProps.errors.email ? "#fafafa" : "#88c9bf"} />
                             </InputWrapper>
                             <InputWrapper>
@@ -167,8 +209,8 @@ export default class SignUpPage extends Component {
                             <Header>
                                 FOTO DE PERFIL
                             </Header>
-                            <PhotoFrame>
-
+                            <PhotoFrame onPress={this.handleClick}>
+                                <ButtonText style={{ color: "white" }}>Escolher foto</ButtonText>
                             </PhotoFrame>
 
                             {formikProps.isValid ?
@@ -199,7 +241,7 @@ export default class SignUpPage extends Component {
                     )}
 
                 </Formik>
-            </Container>
+            </Container >
         );
     }
 }

@@ -63,10 +63,12 @@ export const Header = styled(Text)`
     margin: 28px 0px 32px 5px;
 `;
 
-export const PhotoFrame = styled(View)`
+export const PhotoFrame = styled(RectButton)`
     width: 128px;
     height: 128px;
     margin-bottom: 32px;
     background-color: #e6e7e7;
     border-radius: 4px;
+    align-items: center;
+    justify-content: center;
 `;

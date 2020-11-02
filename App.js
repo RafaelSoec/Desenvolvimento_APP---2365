@@ -5,7 +5,7 @@ import Routes from './src/routes';
 import { AppLoading } from 'expo'
 import { useFonts, Courgette_400Regular } from '@expo-google-fonts/courgette'
 import { Roboto_400Regular, Roboto_500Medium } from '@expo-google-fonts/roboto'
-import firebase  from 'firebase'
+import firebase from 'firebase'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {
@@ -15,8 +15,8 @@ export default function App() {
     Roboto_500Medium
   });
 
-  if( !fontsLoaded ) {
-    return <AppLoading/>
+  if (!fontsLoaded) {
+    return <AppLoading />
   }
 
   const app = firebase.initializeApp(firebaseConfig);
