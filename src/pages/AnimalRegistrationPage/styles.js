@@ -57,7 +57,7 @@ export const Input = styled(TextInput)`
   border-bottom-width: 1px;
 `;
   
-export const Upload = styled(View)`
+export const Upload = styled(TouchableOpacity)`
   margin-top: 20px;
   height: 128px;
   width: 312px;
