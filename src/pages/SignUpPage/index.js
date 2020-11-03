@@ -5,7 +5,6 @@ import { MaterialIcons } from 'react-native-vector-icons';
 import UsuarioDTO from '../../dto/UsuarioDTO';
 import { AuthService } from '../../services/AuthService.js';
 import { UsuarioService } from '../../services/UsuarioService.js';
-import { UploadPhoto } from '../../services/UploadPhoto.js';
 
 import * as ImagePicker from 'expo-image-picker';
 import * as firebase from 'firebase';
@@ -76,7 +75,7 @@ export default class SignUpPage extends Component {
         AuthService.createUser(values.email, values.senha, res => {
             console.log(res.message);
             if (res.result) {
-                UsuarioService.uploadPhoto(this.state.imageURI, values.email)
+                this.uploadPhoto(this.state.imageURI, values.email);
                 UsuarioService.addUsuario(values, callback => {
                     this.props.navigation.navigate('LoginPage');
                 })
@@ -117,13 +116,13 @@ export default class SignUpPage extends Component {
         return result;
     }
 
-    /*     async uploadPhoto(uri, imageName) {
-            const response = await fetch(uri).then(console.log("fetch com sucesso"));
-            const blob = await response.blob();
-    
-            var ref = firebase.storage().ref().child("images/" + imageName);
-            return ref.put(blob);
-        } */
+    async uploadPhoto(uri, imageName) {
+        const response = await fetch(uri).then(console.log("fetch com sucesso"));
+        const blob = await response.blob();
+
+        var ref = firebase.storage().ref().child("images/" + imageName);
+        return ref.put(blob);
+    }
 
     render() {
         return (

@@ -36,10 +36,10 @@ const StackRoutes = ({ navigation }) => {
       }} />
 
       <Stack.Screen name="SignUpPage" component={SingUpPage} options={{
-        headerShown: false,
+        headerShown: true,
         title: 'Cadastro',
         headerStyle: {
-          backgroundColor: '#ffd358',
+          backgroundColor: '#88c9bf',
         },
         headerTintColor: '#434343',
         headerTitleStyle: {
