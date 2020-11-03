@@ -187,7 +187,7 @@ export default class SignUpPage extends Component {
                                 <MaterialIcons name="done" size={30} color={formikProps.errors.endereco ? "#fafafa" : "#88c9bf"} />
                             </InputWrapper>
                             <InputWrapper>
-                                <SingUpInput placeholder="Telefone" onChangeText={formikProps.handleChange('telefone')} />
+                                <SingUpInput placeholder="Telefone" keyboardType='phone-pad' onChangeText={formikProps.handleChange('telefone')} />
                                 <MaterialIcons name="done" size={30} color={formikProps.errors.telefone ? "#fafafa" : "#88c9bf"} />
                             </InputWrapper>
                             <Header>
