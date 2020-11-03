@@ -120,7 +120,7 @@ export default class SignUpPage extends Component {
         const response = await fetch(uri).then(console.log("fetch com sucesso"));
         const blob = await response.blob();
 
-        var ref = firebase.storage().ref().child("images/" + imageName);
+        var ref = firebase.storage().ref().child("usuarios/" + imageName);
         return ref.put(blob);
     }
 
