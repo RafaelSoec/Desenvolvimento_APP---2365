@@ -1,5 +1,6 @@
-import React from 'react'
-import { Text, View, ScrollView } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { Text, View, ScrollView, Image } from 'react-native'
+import firebase from 'firebase'
 import { Avatar, List } from 'react-native-paper'
 // import {} from 'react-native-vector-icons/'
 import {
@@ -7,25 +8,34 @@ import {
   Accordion,
   ListItem,
   ExitButton,
-  ExitButtonText
+  ExitButtonText,
+  AvatarImage
 } from './styles'
+import { AuthService } from '../../services/AuthService'
 
 const accordionText = { color: '#434343', fontFamily: 'Roboto_500Medium' }
 const itemText = { color: '#434343', fontFamily: 'Roboto_400Regular' }
 
 const Menu = ({ navigation }) => {
+
+  const getImageUrl = () => {    
+    firebase.storage().ref('usuarios/' + firebase.auth().currentUser.email).getDownloadURL().then(url => {setUrl(url)});
+  }
+
+  const [finalUrl, setUrl] = useState('');
+
   return (
     <View style={{ flex: 1 }}>
       <ScrollView style={{ paddingTop: 0, marginTop: 0 }}>
         <AvatarContainer>
-          <Avatar.Image size={64} />
+          <AvatarImage source={{uri: finalUrl}}/>        
         </AvatarContainer>
         <Accordion
           left={(props) => <List.Icon {...props} icon='account' />}
           titleStyle={accordionText}
           title="Nome do usuario"
           style={{ backgroundColor: '#88c9bf' }}>
-          <ListItem title="Meu perfil" />
+          <ListItem title="Meu perfil" onPress={() => {getImageUrl(); console.log(finalUrl)}}/>
           <ListItem title="Meus pets" onPress={() => navigation.navigate('MyPets')} />
           <ListItem title="Favoritos" />
           <ListItem title="Chat" />
@@ -59,7 +69,12 @@ const Menu = ({ navigation }) => {
           <ListItem title="Privacidade" />
         </Accordion>
       </ScrollView>
-      <ExitButton>
+      <ExitButton onPress={() => {AuthService.logout(res => {
+            console.log(res.message);
+            if(res.result){
+                this.props.navigation.navigate('IntroPage');
+            }
+        }); navigation.navigate('LoginPage')}}>
         <ExitButtonText>
           Sair
         </ExitButtonText>

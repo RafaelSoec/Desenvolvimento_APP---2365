@@ -27,7 +27,7 @@ export class AuthService {
         });
     };
 
-    static logout = () => {
+    static logout = (callback) => {
         const auth = firebase.auth();
         auth.signOut()
         .then((res) => {

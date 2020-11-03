@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { List } from 'react-native-paper';
 import styled from 'styled-components';
@@ -8,6 +8,13 @@ export const AvatarContainer = styled(View)`
   width: 100%;
   background-color: #88c9bf;
   padding: 50px 0 20px 16px;
+`;
+
+export const AvatarImage = styled(Image)`
+  width: 64px;
+  height: 64px;
+  background-color: red;
+  border-radius: 50;
 `;
 
 export const Accordion = styled(List.Accordion)`
