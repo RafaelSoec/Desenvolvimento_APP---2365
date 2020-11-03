@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Text, ScrollView } from 'react-native'
 import { AppLoading } from 'expo'
+import firebase from 'firebase'
 import {
   IntroText,
   Container,
@@ -19,8 +20,14 @@ import {
 } from './styles';
 // import CheckBox from '@react-native-community/checkbox'
 import { RadioButton, Checkbox } from 'react-native-paper'
+import { AnimalService } from '../../services/AnimalService';
 
 const AnimalRegistrationPage = ({ navigation }) => {
+
+  useEffect(() => {
+    const email = firebase.auth().currentUser.email
+    firebase.firestore().collection('usuario').where('email', '==', email).get().then(data => data.forEach(doc => setAnimalState({...animalState, userId: doc.id})))
+  }, []);
 
   const [selectedOptions, setSelectedOptions] = useState({
     ajuda: false,
@@ -48,6 +55,12 @@ const AnimalRegistrationPage = ({ navigation }) => {
     }
   }
 
+  const [animalState, setAnimalState] = useState({temperamento: [], saude: []})
+  const [sickness, setSickness] = useState(false)
+  const [medication, setMedication] = useState(false)
+  const [objects, setObjects] = useState(false)
+
+
 
   return (
     <ScrollView
@@ -58,6 +71,7 @@ const AnimalRegistrationPage = ({ navigation }) => {
         <OptionButton
           style={{ backgroundColor: selectedOptions.adocao ? '#ffd358' : '#f1f2f2' }}
           onPress={() => {
+            setAnimalState({...animalState, tipo: 'adocao'});
             setSelectedOptions({
               ajuda: false,
               adocao: true,
@@ -72,6 +86,7 @@ const AnimalRegistrationPage = ({ navigation }) => {
         <OptionButton
           style={{ backgroundColor: selectedOptions.apadrinhar ? '#ffd358' : '#f1f2f2' }}
           onPress={() => {
+            setAnimalState({...animalState, tipo: 'apadrinhar'});
             setSelectedOptions({
               ajuda: false,
               adocao: false,
@@ -87,6 +102,7 @@ const AnimalRegistrationPage = ({ navigation }) => {
         <OptionButton
           style={{ backgroundColor: selectedOptions.ajuda ? '#ffd358' : '#f1f2f2' }}
           onPress={() => {
+            setAnimalState({...animalState, tipo: 'ajuda'});
             setSelectedOptions({
               ajuda: true,
               adocao: false,
@@ -103,104 +119,112 @@ const AnimalRegistrationPage = ({ navigation }) => {
       <Form>
         <FormSectionTitle>{getTitle()}</FormSectionTitle>
         <Label>NOME DO ANIMAL</Label>
-        <Input placeholder="Nome do animal" ></Input>
+        <Input placeholder="Nome do animal" onChangeText={(value) => setAnimalState({...animalState, nome: value})}></Input>
         <Label>FOTOS DO ANIMAL</Label>
         <Upload />
 
         <Label>ESPÉCIE</Label>
         <ItemOptions>
-          <RadioButton status='disabled' />
-          <Item>Cachorro</Item>
-          <RadioButton status='disabled' />
-          <Item>Gato</Item>
+          <RadioButton.Group onValueChange={value => {setAnimalState({...animalState, especie: value})}} value={animalState.especie}>
+            <RadioButton value='cachorro' />
+            <Item>Cachorro</Item>
+            <RadioButton value='gato'/>
+            <Item>Gato</Item>
+          </RadioButton.Group>
         </ItemOptions>
 
         <Label>SEXO</Label>
         <ItemOptions>
-          <RadioButton status='disabled' />
-          <Item>Macho</Item>
-          <RadioButton status='disabled' />
-          <Item>Fêmea</Item>
+          <RadioButton.Group onValueChange={value => {setAnimalState({...animalState, sexo: value})}} value={animalState.sexo}>
+            <RadioButton value='macho' />
+            <Item>Macho</Item>
+            <RadioButton value='femea'/>
+            <Item>Fêmea</Item>
+          </RadioButton.Group>
         </ItemOptions>
 
         <Label>PORTE</Label>
         <ItemOptions>
-          <RadioButton status='disabled' />
-          <Item>Pequeno</Item>
-          <RadioButton status='disabled' />
-          <Item>Médio</Item>
-          <RadioButton status='disabled' />
-          <Item>Grande</Item>
+          <RadioButton.Group onValueChange={value => {setAnimalState({...animalState, tamanho: value})}} value={animalState.tamanho}>
+              <RadioButton value='pequeno' />
+              <Item>Pequeno</Item>
+              <RadioButton value='medio'/>
+              <Item>Médio</Item>
+              <RadioButton value='grande'/>
+              <Item>Grande</Item>
+          </RadioButton.Group>
         </ItemOptions>
 
         <Label>IDADE</Label>
         <ItemOptions>
-          <RadioButton status='disabled' />
-          <Item>Filhote</Item>
-          <RadioButton status='disabled' />
-          <Item>Adulto</Item>
-          <RadioButton status='disabled' />
-          <Item>Idoso</Item>
+          <RadioButton.Group onValueChange={value => {setAnimalState({...animalState, idade: value})}} value={animalState.idade}>
+                <RadioButton value='filhote' />
+                <Item>Filhote</Item>
+                <RadioButton value='adulto'/>
+                <Item>Adulto</Item>
+                <RadioButton value='idoso'/>
+                <Item>Idoso</Item>
+          </RadioButton.Group>
         </ItemOptions>
 
         <Label>TEMPERAMENTO</Label>
         <ItemOptions>
-          <Checkbox status='unchecked' />
+          <Checkbox status={animalState.temperamento?.find((elemento) => 'brincalhao' === elemento) ? 'checked' : "unchecked"} onPress={() => {animalState.temperamento.push('brincalhao'); setAnimalState({...animalState})}} />
           <Item>Brincalhão</Item>
-          <Checkbox status='unchecked' />
+          <Checkbox status={animalState.temperamento?.find((elemento) => 'timido' === elemento ) ? 'checked' : "unchecked"} onPress={() => {animalState.temperamento.push('timido'); setAnimalState({...animalState})}} />
           <Item>Tímido</Item>
-          <Checkbox status='unchecked' />
+          <Checkbox status={animalState.temperamento?.find((elemento) => 'calmo' === elemento ) ? 'checked' : "unchecked"} onPress={() => {animalState.temperamento.push('calmo'); setAnimalState({...animalState})}} />
           <Item>Calmo</Item>
         </ItemOptions>
         <ItemOptions>
-          <Checkbox status='unchecked' />
+          <Checkbox status={animalState.temperamento?.find((elemento) => 'guarda' === elemento ) ? 'checked' : "unchecked"} onPress={() => {animalState.temperamento.push('guarda'); setAnimalState({...animalState})}} />
           <Item>Guarda</Item>
-          <Checkbox status='unchecked' />
+          <Checkbox status={animalState.temperamento?.find((elemento) => 'amoroso' === elemento ) ? 'checked' : "unchecked"} onPress={() => {animalState.temperamento.push('amoroso'); setAnimalState({...animalState})}} />
           <Item>Amoroso</Item>
-          <Checkbox status='unchecked' />
+          <Checkbox status={animalState.temperamento?.find((elemento) => 'preguicoso' === elemento ) ? 'checked' : "unchecked"} onPress={() => {animalState.temperamento.push('preguicoso'); setAnimalState({...animalState})}} />
           <Item>Preguiçoso</Item>
         </ItemOptions>
 
         <Label>SAÚDE</Label>
         <ItemOptions>
-          <Checkbox status='unchecked' />
+          <Checkbox status={animalState.saude?.find((elemento) => 'vacinado' === elemento ) ? 'checked' : "unchecked"} onPress={() => {animalState.saude.push('vacinado'); setAnimalState({...animalState})}} />
           <Item>Vacinado</Item>
-          <Checkbox status='unchecked' />
+          <Checkbox status={animalState.saude?.find((elemento) => 'vermifugado' === elemento ) ? 'checked' : "unchecked"} onPress={() => {animalState.saude.push('vermifugado'); setAnimalState({...animalState})}} />
           <Item>Vermifugado</Item>
         </ItemOptions>
         <ItemOptions>
-          <Checkbox status='unchecked' />
+          <Checkbox status={animalState.saude?.find((elemento) => 'castrado' === elemento ) ? 'checked' : "unchecked"} onPress={() => {animalState.saude.push('castrado'); setAnimalState({...animalState})}} />
           <Item>Castrado</Item>
-          <Checkbox status='unchecked' />
+          <Checkbox status={sickness ? 'checked' : 'unchecked'} onPress={() => setSickness(!sickness)} />
           <Item>Doente</Item>
         </ItemOptions>
-        <Input placeholder="Doenças do animal"></Input>
+        <Input placeholder="Doenças do animal" onChangeText={(value) => setAnimalState({...animalState, doencas: value})} editable={sickness}></Input>
 
         {selectedOptions.apadrinhar && (
           <>
             <Label>EXIGÊNCIAS PARA APADRINHAMENTO</Label>
             <ItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={animalState.exigencias?.termoDeApadrinhamento ? 'checked' : "unchecked"} onPress={() => {setAnimalState({...animalState, exigencias: {...animalState.exigencias, termoDeApadrinhamento: true}})}} />
               <Item>Termo de apadrinhamento</Item>
             </ItemOptions>
             <ItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={animalState.exigencias?.auxilioFinanceiro ? 'checked' : "unchecked"} onPress={() => {setAnimalState({...animalState, exigencias: {...animalState.exigencias, auxilioFinanceiro: []}})}} />
               <Item>Auxílio financeiro</Item>
             </ItemOptions>
             <SubItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={animalState.exigencias?.auxilioFinanceiro?.find((value => value === 'alimentacao')) ? 'checked' : "unchecked"} onPress={() => {animalState.exigencias.auxilioFinanceiro.push('alimentacao'); setAnimalState({...animalState})}} />
               <Item>Alimentação</Item>
             </SubItemOptions>
             <SubItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={animalState.exigencias?.auxilioFinanceiro?.find((value => value === 'saude')) ? 'checked' : "unchecked"} onPress={() => {animalState.exigencias.auxilioFinanceiro.push('saude'); setAnimalState({...animalState})}} />
               <Item>Saúde</Item>
             </SubItemOptions>
             <SubItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={animalState.exigencias?.auxilioFinanceiro?.find((value => value === 'objetos')) ? 'checked' : "unchecked"} onPress={() => {animalState.exigencias.auxilioFinanceiro.push('objetos'); setAnimalState({...animalState})}} />
               <Item>Objetos</Item>
             </SubItemOptions>
             <ItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={animalState.exigencias?.visitas ? 'checked' : "unchecked"} onPress={() => {setAnimalState({...animalState, exigencias: {...animalState.exigencias, visitas: true}})}} />
               <Item>Visitas ao animal</Item>
             </ItemOptions>
           </>
@@ -210,31 +234,31 @@ const AnimalRegistrationPage = ({ navigation }) => {
           <>
             <Label>EXIGÊNCIAS PARA ADOÇÃO</Label>
             <ItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={animalState.exigencias?.termoDeAdocao ? 'checked' : "unchecked"} onPress={() => {setAnimalState({...animalState, exigencias: {...animalState.exigencias, termoDeAdocao: true}})}} />
               <Item>Termo de adoção</Item>
             </ItemOptions>
             <ItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={animalState.exigencias?.fotosDaCasa ? 'checked' : "unchecked"} onPress={() => {setAnimalState({...animalState, exigencias: {...animalState.exigencias, fotosDaCasa: true}})}} />
               <Item>Fotos da casa</Item>
             </ItemOptions>
             <ItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={animalState.exigencias?.visitaPrevia ? 'checked' : "unchecked"} onPress={() => {setAnimalState({...animalState, exigencias: {...animalState.exigencias, visitaPrevia: true}})}} />
               <Item>Visita prévia ao animal</Item>
             </ItemOptions>
             <ItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={animalState.exigencias?.acompanhamento ? 'checked' : "unchecked"} onPress={() => {setAnimalState({...animalState, exigencias: {...animalState.exigencias, acompanhamento: []}})}} />
               <Item>Acompanhamento pós adoção</Item>
             </ItemOptions>
             <SubItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={animalState.exigencias?.acompanhamento?.find((value => value === '1 mês')) ? 'checked' : "unchecked"} onPress={() => {animalState.exigencias.acompanhamento.push('1 mês'); setAnimalState({...animalState})}} />
               <Item>1 mês</Item>
             </SubItemOptions>
             <SubItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={animalState.exigencias?.acompanhamento?.find((value => value === '3 meses')) ? 'checked' : "unchecked"} onPress={() => {animalState.exigencias.acompanhamento.push('3 meses'); setAnimalState({...animalState})}} />
               <Item>3 meses</Item>
             </SubItemOptions>
             <SubItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={animalState.exigencias?.acompanhamento?.find((value => value === '6 meses')) ? 'checked' : "unchecked"} onPress={() => {animalState.exigencias.acompanhamento.push('6 meses'); setAnimalState({...animalState})}} />
               <Item>6 meses</Item>
             </SubItemOptions>
           </>
@@ -245,30 +269,31 @@ const AnimalRegistrationPage = ({ navigation }) => {
             <FormSectionTitle>Ajudar</FormSectionTitle>
             <Label>Necessidades do animal</Label>
             <ItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={animalState.necessidades?.alimento ? 'checked' : "unchecked"} onPress={() => {setAnimalState({...animalState, necessidades: {...animalState.necessidades, alimento: true}})}} />
               <Item>Alimento</Item>
             </ItemOptions>
             <ItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={animalState.necessidades?.auxilioFinanceiro ? 'checked' : "unchecked"} onPress={() => {setAnimalState({...animalState, necessidades: {...animalState.necessidades, auxilioFinanceiro: true}})}} />
               <Item>Auxílio financeiro</Item>
             </ItemOptions>
             <ItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={medication ? 'checked' : 'unchecked'} onPress={() => setMedication(!medication)} />
               <Item>Medicamento</Item>
             </ItemOptions>
-            <Input placeholder="Nome do medicamento" />
+            <Input placeholder="Nome do medicamento" editable={medication} onChangeText={(value => setAnimalState({...animalState, necessidades: {...animalState.necessidades, medicamento: value}}))}/>
             <ItemOptions>
-              <Checkbox status='unchecked' />
+              <Checkbox status={objects ? 'checked' : 'unchecked'} onPress={() => setObjects(!objects)} />
               <Item>Objetos</Item>
             </ItemOptions>
-            <Input placeholder="Especifique os objetos" />
+            <Input placeholder="Especifique os objetos" editable={objects} onChangeText={(value => setAnimalState({...animalState, necessidades: {...animalState.necessidades, objetos: value}}))}/>
+
           </>
         )}
 
         <Label>SOBRE O ANIMAL</Label>
         <Input placeholder="Compartilhe a história do animal"></Input>
       </Form>
-      <SubmitButton onPress={() => navigation.navigate('AnimalRegistrationSuccess')}>
+      <SubmitButton onPress={() => AnimalService.addAnimal(animalState, () => console.log('salvando'))}>
         <SubmitButtonText>{getSubmitText()}</SubmitButtonText>
       </SubmitButton>
     </ScrollView>
