@@ -16,8 +16,7 @@ import { AuthService } from '../../services/AuthService'
 const accordionText = { color: '#434343', fontFamily: 'Roboto_500Medium' }
 const itemText = { color: '#434343', fontFamily: 'Roboto_400Regular' }
 
-const Menu = ({ navigation }) => {
-
+const Menu = ({ navigation, props }) => {
   const getImageUrl = () => {    
     firebase.storage().ref('usuarios/' + firebase.auth().currentUser.email).getDownloadURL().then(url => {setUrl(url)});
   }

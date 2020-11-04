@@ -13,6 +13,7 @@ import {
     Image,
     KeyboardAvoidingView,
 } from 'react-native';
+import Loading from '../../components/Loading';
 
 
 export default class LoginPage extends Component {
@@ -44,7 +45,7 @@ export default class LoginPage extends Component {
     logIn = () => {
         AuthService.login(this.state.email, this.state.password, res => {
             console.log(res.message);
-            if(res.result){
+            if (res.result) {
                 this.props.navigation.navigate('IntroPage');
             }
         });
@@ -52,7 +53,8 @@ export default class LoginPage extends Component {
 
     render() {
         return (
-            <Container style={styles.mainBody}>
+            <Container style={styles.mainBody}>  
+                 <Loading loading={false} /> 
                 <StatusBar barStyle="light-content" backgroundColor="#88c9bf" />
                 <ScrollView keyboardShouldPersistTaps="handled">
                     <View style={{ marginTop: 100 }}>
