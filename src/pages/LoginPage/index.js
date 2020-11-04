@@ -54,7 +54,7 @@ export default class LoginPage extends Component {
     render() {
         return (
             <Container style={styles.mainBody}>  
-                 <Loading loading={false} /> 
+                 {/* <Loading loading={false} />  */}
                 <StatusBar barStyle="light-content" backgroundColor="#88c9bf" />
                 <ScrollView keyboardShouldPersistTaps="handled">
                     <View style={{ marginTop: 100 }}>

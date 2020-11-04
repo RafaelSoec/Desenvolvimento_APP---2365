@@ -11,7 +11,7 @@ const Drawer = createDrawerNavigator()
 const Routes = () => {
   return (
     <NavigationContainer>
-    <Loading loading={true} /> 
+    <Loading loading={false} /> 
       <Drawer.Navigator drawerContent={(props) => 
         <Menu {...props} /> }>
         <Drawer.Screen name='stackRoutes' component={StackRoutes}/>
