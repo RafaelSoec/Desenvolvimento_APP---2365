@@ -107,7 +107,7 @@ const AnimalRegistrationPage = ({ navigation }) => {
   const cadastrarAnimal = async () => {
     AnimalService.addAnimal(animalState, data => {
       uploadPhoto(imageUri, data.id);
-      navigation.navigate('IntroPage');
+      navigation.navigate('AnimalRegistrationSuccess');
     });
   }
 

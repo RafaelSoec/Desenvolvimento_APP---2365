@@ -10,7 +10,7 @@ import {
 import {Roboto_400Regular} from '@expo-google-fonts/roboto';
 import {AppLoading} from 'expo';
 
-const AnimalRegistrationSuccessPage = () => {
+const AnimalRegistrationSuccessPage = ({navigation}) => {
   
   return (
     <Container>
@@ -27,7 +27,7 @@ const AnimalRegistrationSuccessPage = () => {
         assim que alguém interessado entrar
         em contato!
       </NotificationAlert>
-      <MyPetsButton>
+      <MyPetsButton onPress={() => navigation.navigate('MyPets')}>
         <MyPetsButtonText>
           MEUS PETS
         </MyPetsButtonText>
