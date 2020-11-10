@@ -104,10 +104,22 @@ export default class SignUpPage extends Component {
     async choosePhoto(from) {
         if (from == "camera") {
             await ImagePicker.getCameraPermissionsAsync();
-            var result = await ImagePicker.launchCameraAsync();
+            var result = await ImagePicker.launchCameraAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                allowsMultipleSelection: false,
+                aspect: [4, 3],
+                quality: 0.5,
+            });
         }
         else {
-            var result = await ImagePicker.launchImageLibraryAsync();
+            var result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                allowsMultipleSelection: false,
+                aspect: [4, 3],
+                quality: 0,
+            });
         }
 
         if (!result.cancelled) {

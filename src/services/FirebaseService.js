@@ -21,15 +21,15 @@ export class FirebaseService {
     //firestore example
     static getDataFirestore = (nodePath, callback) => {
         let query = firebase.firestore().collection(nodePath)
-        .get().then((querySnapshot) => {
-            let items = [];
-            querySnapshot.forEach((doc) => {
-                var data = doc.data();
-                data["id"] = doc.id;
-                items.push(data);
+            .get().then((querySnapshot) => {
+                let items = [];
+                querySnapshot.forEach((doc) => {
+                    var data = doc.data();
+                    data["id"] = doc.id;
+                    items.push(data);
+                });
+                callback(items);
             });
-            callback(items);
-        });
 
         return query;
     };
@@ -37,9 +37,9 @@ export class FirebaseService {
     //procura por um id, caso nao ache retorna null
     static findById = (nodePath, id, callback) => {
         firebase.firestore().collection(nodePath)
-        .doc(id).get().then((doc) => {
-            callback((doc.data() ? doc.data(): null));
-        });
+            .doc(id).get().then((doc) => {
+                callback((doc.data() ? doc.data() : null));
+            });
     };
 
     static getGoogleProvider = () => {
@@ -49,4 +49,5 @@ export class FirebaseService {
     static getFacebookProvider = () => {
         return new firebase.auth.FacebookAuthProvider();
     };
+
 }

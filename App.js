@@ -19,8 +19,10 @@ export default function App() {
     return <AppLoading />
   }
 
+
   const app = firebase.initializeApp(firebaseConfig);
   firebase.firestore(app);
+
 
   return (
     <Routes />

@@ -345,7 +345,7 @@ const AnimalRegistrationPage = ({ navigation }) => {
       <SubmitButton onPress={cadastrarAnimal}>
         <SubmitButtonText>{getSubmitText()}</SubmitButtonText>
       </SubmitButton>
-    </ScrollView>
+    </ScrollView >
   )
 }
 
