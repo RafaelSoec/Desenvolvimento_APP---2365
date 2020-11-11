@@ -21,7 +21,7 @@ const Menu = ({ navigation, props }) => {
     firebase.storage().ref('usuarios/' + firebase.auth().currentUser.email).getDownloadURL().then(url => {setUrl(url)});
   }
 
-  const [finalUrl, setUrl] = useState('');
+  const [finalUrl, setUrl] = useState('https://source.unsplash.com/random?user');
 
   return (
     <View style={{ flex: 1 }}>

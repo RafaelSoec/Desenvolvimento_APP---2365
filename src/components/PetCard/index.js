@@ -1,39 +1,22 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Container, Header, PetName, PetImage, PetInfo, AboutPet, Location, AboutItem} from './styles'
 import Icon from 'react-native-vector-icons/FontAwesome5'
+import firebase from 'firebase'
 import { Image, Text, View } from 'react-native'
 
-const PetCard = ({name, age, sex, location, size}) => {
+const PetCard = ({name, age, sex, location, size, id}) => {
 
-  const defineSize = (sexo) => {
-    if(sexo == 'M'){
-      return 'MÉDIO';
-    }
-    else if(sexo == 'G'){
-      return 'GRANDE';
-    }
-    else{
-      return 'PEQUENO';
-    }
+  const [avatarUrl, setAvatarUrl] = useState('https://source.unsplash.com/random?dog,cat')
+  
+  const getImageUrl = async () => {    
+    const url = await firebase.storage().ref('animals/' + id).getDownloadURL();
+    console.log(url)
+    setAvatarUrl(url)
   }
 
-  const defineSex = (sexo) => {
-    if(sexo == 'M'){
-      return 'MACHO';
-    }else{
-      return 'FÊMEA';
-    }
-  }
-
-  const defineYear = (idade, sexo) => {
-    if(idade < 2){
-      return 'FILHOTE';
-    }else if(idade >= 2 && idade < 4){
-      return ((sexo == 'M') ? 'ADULTO' : 'ADULTA');
-    }else{
-      return ((sexo == 'M') ? 'IDOSO' : 'IDOSA');
-    }
-  }
+  useEffect(() => {
+    getImageUrl();
+  }, [])
 
   return (
     <Container style={{ elevation: 5, borderColor: '#000' }}>
@@ -43,12 +26,12 @@ const PetCard = ({name, age, sex, location, size}) => {
         </PetName>
         <Icon name='heart' size={24} color={'#434343'} />
       </Header>
-      <PetImage source={{uri: 'https://source.unsplash.com/random?dog,cat'}} />
+      <PetImage source={{uri: avatarUrl}} />
       <PetInfo>
         <AboutPet>
-          <AboutItem>{defineSex(sex)}</AboutItem>
-          <AboutItem>{defineYear(age, sex)}</AboutItem>
-          <AboutItem>{defineSize(size)}</AboutItem>
+          <AboutItem>{sex}</AboutItem>
+          <AboutItem>{age}</AboutItem>
+          <AboutItem>{size}</AboutItem>
         </AboutPet>
         <Location>{location}</Location>
       </PetInfo>

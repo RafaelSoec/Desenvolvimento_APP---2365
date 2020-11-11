@@ -23,6 +23,8 @@ export default function App() {
   const app = firebase.initializeApp(firebaseConfig);
   firebase.firestore(app);
 
+  // para disabilitar os warnings
+  // console.disableYellowBox = ['Setting a timer'];
 
   return (
     <Routes />
