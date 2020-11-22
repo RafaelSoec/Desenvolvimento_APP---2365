@@ -11,13 +11,13 @@ export const Container = styled(View)`
 export const Alert = styled(Text)`
   margin-bottom: 52px;
   font-size: 70px;
-  font-family: 'Courgette_400Regular';
+  font-family: 'Courgette-Regular';
   color: #ffd348;
 `;
   
 export const Info = styled(Text)`
   font-size: 19px;
-  font-family: 'Roboto_400Regular';
+  font-family: 'Roboto-Regular';
   color: #757575;
   text-align: center;
   margin-bottom: 20px;
@@ -25,7 +25,7 @@ export const Info = styled(Text)`
   
 export const NotificationAlert = styled(Text)`
   font-size: 16px;
-  font-family: 'Roboto_400Regular';
+  font-family: 'Roboto-Regular';
   color: #757575;
   text-align: center;
   margin-bottom: 20px;
@@ -42,6 +42,6 @@ export const MyPetsButton = styled(TouchableOpacity)`
 `;
 
 export const MyPetsButtonText = styled(Text)`
-  font-family: 'Roboto_400Regular';
+  font-family: 'Roboto-Regular';
   font-size: 14px;
 `;

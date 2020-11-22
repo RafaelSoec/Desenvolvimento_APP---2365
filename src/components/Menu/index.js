@@ -13,8 +13,8 @@ import {
 } from './styles'
 import { AuthService } from '../../services/AuthService'
 
-const accordionText = { color: '#434343', fontFamily: 'Roboto_500Medium' }
-const itemText = { color: '#434343', fontFamily: 'Roboto_400Regular' }
+const accordionText = { color: '#434343', fontFamily: 'Roboto-Medium' }
+const itemText = { color: '#434343', fontFamily: 'Roboto-Regular' }
 
 const Menu = ({ navigation, props }) => {
   const getImageUrl = () => {    

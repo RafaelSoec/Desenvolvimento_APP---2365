@@ -17,7 +17,7 @@ export const Header = styled(View)`
 `;
 
 export const PetName = styled(Text)`
-  font-family: 'Roboto_500Medium';
+  font-family: 'Roboto-Medium';
   font-size: 16px;
   color: #434343;
 `
@@ -39,7 +39,7 @@ export const PetInfo = styled(View)`
 
 export const Location = styled(Text)`
   font-size: 12px;
-  font-family: 'Roboto_400Regular';
+  font-family: 'Roboto-Regular';
   color: #434343;
 `;
 
@@ -52,6 +52,6 @@ export const AboutPet = styled(View)`
 
 export const AboutItem = styled(Text)`
   font-size: 12px;
-  font-family: 'Roboto_400Regular';
+  font-family: 'Roboto-Regular';
   color: #434343;
 `;

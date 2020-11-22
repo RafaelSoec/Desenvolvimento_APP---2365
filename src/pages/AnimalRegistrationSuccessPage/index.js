@@ -7,7 +7,6 @@ import {
   MyPetsButton,
   MyPetsButtonText
 } from './styles'
-import {Roboto_400Regular} from '@expo-google-fonts/roboto';
 import {AppLoading} from 'expo';
 
 const AnimalRegistrationSuccessPage = ({navigation}) => {

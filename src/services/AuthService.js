@@ -1,9 +1,9 @@
-import firebase from 'firebase';
+import { FirebaseService } from './FirebaseService.js';
 
 export class AuthService {
 
     static  login = (email, password, callback) => {
-        const auth = firebase.auth();
+        const auth = FirebaseService.getInstanceFirebase().auth();
         auth.signInWithEmailAndPassword(email, password)
         .then((res) => {
             console.log(`Login realizado com sucesso.`);
@@ -16,7 +16,7 @@ export class AuthService {
     };
 
     static  createUser = (email, password, callback) => {  
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+        FirebaseService.getInstanceFirebase().auth().createUserWithEmailAndPassword(email, password)
         .then((res) => {
             console.log(`Usuario criado com sucesso.`);
             callback({result: res,  message: `Usuario criado com sucesso.`});
@@ -28,7 +28,7 @@ export class AuthService {
     };
 
     static logout = (callback) => {
-        const auth = firebase.auth();
+        const auth = FirebaseService.getInstanceFirebase().auth();
         auth.signOut()
         .then((res) => {
             console.log(`Logout realizado com sucesso.`);

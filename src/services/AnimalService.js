@@ -1,4 +1,3 @@
-import firebase from 'firebase';
 import { FirebaseService } from './FirebaseService.js';
 
 
@@ -6,7 +5,7 @@ export class AnimalService {
     static path = "animal";
 
     static  addAnimal = (data, callback) => {
-        firebase.firestore()
+        FirebaseService.getInstanceFirebase().firestore()
         .collection(this.path).add(data)
         .then((doc) => {
             data["id"] = doc.id;
@@ -19,7 +18,7 @@ export class AnimalService {
     static  updateAnimal = (data, callback) => {  
         FirebaseService.findById(this.path, data["id"], dataRecover => {
             if(dataRecover){
-                firebase.firestore()
+                FirebaseService.getInstanceFirebase().firestore()
                 .collection(this.path)
                 .doc(idAnimal).update(data["id"])
                 .then((doc) => {
@@ -37,7 +36,7 @@ export class AnimalService {
     static deleteAnimal = (idAnimal) => {
         FirebaseService.findById(this.path, idAnimal, dataRecover => {
             if(dataRecover){
-                firebase.firestore()
+                FirebaseService.getInstanceFirebase().firestore()
                 .collection(this.path)
                 .doc(idAnimal).delete()
                 .then((doc) => {

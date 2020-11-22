@@ -1,12 +1,17 @@
-import firebase from 'firebase';
 import { FirebaseService } from './FirebaseService.js';
-
 
 export class UsuarioService {
     static path = "usuario";
 
-    static addUsuario = (data, callback) => {
-        firebase.firestore()
+
+    static  getCurrentUser = async (data, callback) => {
+        return await FirebaseService.getInstanceFirebase().firestore().collection('usuario')
+        .doc(FirebaseService.getInstanceFirebase().auth().currentUser.uid);
+    };
+
+    static  addUsuario = async (data, callback) => {
+        if(data != null){
+            FirebaseService.getInstanceFirebase().firestore()
             .collection(this.path).add(data)
             .then((doc) => {
                 data["id"] = doc.id;
@@ -14,14 +19,15 @@ export class UsuarioService {
                 callback(data);
             })
             .catch((error) => { console.log(`Falha ao adicionar Usuario: ${error}`); });
+        }
     };
 
     static updateUsuario = (data, callback) => {
         FirebaseService.findById(this.path, data["id"], dataRecover => {
             if (dataRecover) {
-                firebase.firestore()
+                FirebaseService.getInstanceFirebase().firestore()
                     .collection(this.path)
-                    .doc(idUsuario).update(data["id"])
+                    .doc(idUsuario).update(data)
                     .then((doc) => {
                         console.log(`Usuario atualizado.`);
                         callback(doc.data());
@@ -37,7 +43,7 @@ export class UsuarioService {
     static deleteUsuario = (idUsuario) => {
         FirebaseService.findById(this.path, idUsuario, dataRecover => {
             if (dataRecover) {
-                firebase.firestore()
+                FirebaseService.getInstanceFirebase().firestore()
                     .collection(this.path)
                     .doc(idUsuario).delete()
                     .then((doc) => {
@@ -54,7 +60,7 @@ export class UsuarioService {
         const response = await fetch(uri).then(console.log("Fetch de imagem com sucesso"));
         const blob = await response.blob();
 
-        var ref = firebase.storage().ref().child(path + "/" + imageName);
+        var ref = FirebaseService.getInstanceFirebase().storage().ref().child(path + "/" + imageName);
         return ref.put(blob);
     }
 

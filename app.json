@@ -23,6 +23,7 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
+      "useNextNotificationsApi": true,
       "package": "com.devapp.meau"
     }
   }

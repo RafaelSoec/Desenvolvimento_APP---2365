@@ -11,5 +11,6 @@ export default class UsuarioDTO {
         this.senha = null;
         this.telefone = null;
         this.logradouro = null;
+        this.token = null;
     }
 }

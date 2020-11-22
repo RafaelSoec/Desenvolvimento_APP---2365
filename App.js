@@ -1,53 +1,53 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import Routes from './src/routes';
 import { AppLoading } from 'expo'
-import { useFonts, Courgette_400Regular } from '@expo-google-fonts/courgette'
-import { Roboto_400Regular, Roboto_500Medium } from '@expo-google-fonts/roboto'
-import firebase from 'firebase'
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import * as Font from 'expo-font';
+import firebase from 'firebase';
+import { Enviromment } from './src/enviromment.js';
 
-export default function App() {
-  let [fontsLoaded] = useFonts({
-    Courgette_400Regular,
-    Roboto_400Regular,
-    Roboto_500Medium
+export default class App extends Component {
+  customFonts = {
+    'Roboto-Medium': require('./assets/fonts/Roboto/Roboto-Medium.ttf'),
+    'Roboto-Regular': require('./assets/fonts/Roboto/Roboto-Regular.ttf'),
+    'Courgette-Regular': require('./assets/fonts/Courgette/Courgette-Regular.ttf'),
+   };
+
+  styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
   });
 
-  if (!fontsLoaded) {
-    return <AppLoading />
+  constructor(props){
+    super(props);
+    this.state = { fontsLoaded: false };
   }
 
+  async componentDidMount(){
+    this._loadFontsAsync();
+    const app = firebase.initializeApp(Enviromment.getConfigFirebase());
+    firebase.firestore(app);
+  }
 
-  const app = firebase.initializeApp(firebaseConfig);
-  firebase.firestore(app);
+  async _loadFontsAsync() {
+    await Font.loadAsync(this.customFonts);
+    this.setState({ fontsLoaded: true });
+  }
 
-  // para disabilitar os warnings
-  // console.disableYellowBox = ['Setting a timer'];
+  render() {
+    // para disabilitar os warnings
+    // console.disableYellowBox = ['Setting a timer'];
 
-  return (
-    <Routes />
-  )
+    if (!this.state.fontsLoaded) {
+      return <AppLoading />
+    }
+
+    return (
+      <Routes />
+    )
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBjTTdAQWXbKw78BiH3qSSk51zM2OWtZL4",
-  authDomain: "meau-61777.firebaseapp.com",
-  databaseURL: "https://meau-61777.firebaseio.com",
-  projectId: "meau-61777",
-  storageBucket: "meau-61777.appspot.com",
-  messagingSenderId: "641683666858",
-  appId: "1:641683666858:web:6f49aadfced9d66a5f9dd3",
-  measurementId: "G-8D172FBD4H"
-};

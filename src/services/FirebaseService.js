@@ -2,6 +2,10 @@ import firebase from 'firebase';
 
 export class FirebaseService {
 
+    static getInstanceFirebase = () =>{
+        return firebase;
+    }
+
     //Realtime example
     static getDataList = (nodePath, callback, size = 10) => {
         let query = firebase.database().ref(nodePath).limitToLast(size);

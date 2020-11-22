@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const IntroText = styled(Text)`
   margin: 16px 0;
   font-size: 16px;
-  font-family: 'Roboto_400Regular';
+  font-family: 'Roboto-Regular';
   color: #757575;
 `;
 
@@ -38,20 +38,20 @@ export const Form = styled(View)`
 
 export const FormSectionTitle = styled(Text)`
   margin-top: 30px;
-  font-family: 'Roboto_500Medium';
+  font-family: 'Roboto-Medium';
   font-size: 22px;
 `;
 
 export const Label = styled(Text)`
   margin-top: 20px;
-  font-family: 'Roboto_400Regular';
+  font-family: 'Roboto-Regular';
   color: #f7a800;
   font-size: 16px;
 `;
 
 export const Input = styled(TextInput)`
   margin-top: 20px;
-  font-family: 'Roboto_400Regular';
+  font-family: 'Roboto-Regular';
   font-size: 19px;
   border-bottom-color: #e6e7e8;
   border-bottom-width: 1px;
@@ -79,7 +79,7 @@ export const SubItemOptions = styled(View)`
 
 export const Item = styled(Text)`
   font-size: 19px;
-  font-family: 'Roboto_400Regular';
+  font-family: 'Roboto-Regular';
   margin-right: 10px;
 `;
 
@@ -94,5 +94,5 @@ export const SubmitButton = styled(TouchableOpacity)`
 
 export const SubmitButtonText = styled(Text)`
   font-size: 18px;
-  font-family: 'Roboto_400Regular';
+  font-family: 'Roboto-Regular';
 `;

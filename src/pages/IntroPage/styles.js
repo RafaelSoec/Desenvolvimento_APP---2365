@@ -8,7 +8,7 @@ export const Container = styled(View)`
 `;
 
 export const Greeting = styled(Text)`
-  font-family: 'Courgette_400Regular';
+  font-family: 'Courgette-Regular';
   font-size: 96px;
   color: #ffd358;  
   margin-bottom: 52px;
@@ -20,7 +20,7 @@ export const AboutText = styled(Text)`
   color: #757575;
   text-align: center;
   margin-bottom: 48px;
-  font-family: 'Roboto_400Regular';
+  font-family: 'Roboto-Regular';
 `;
 
 export const Button = styled(RectButton)`
@@ -38,7 +38,7 @@ export const Button = styled(RectButton)`
 export const ButtonText = styled(Text)`
   font-size: 16px;
   color: #434343;
-  font-family: 'Roboto_400Regular';
+  font-family: 'Roboto-Regular';
 `;
 
 export const LoginLink = styled(TouchableOpacity)`
@@ -49,7 +49,7 @@ export const LoginLink = styled(TouchableOpacity)`
 export const LoginText = styled(Text)`
   font-size: 22px;
   color: #88cbf9;
-  font-family: 'Roboto_400Regular';
+  font-family: 'Roboto-Regular';
 `;
 
 export const Logo = styled(Image)`
