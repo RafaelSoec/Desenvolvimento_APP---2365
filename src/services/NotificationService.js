@@ -5,37 +5,39 @@ import { UsuarioService } from './UsuarioService.js';
 
 export class NotificationService {
 
-    static setNotificationHandler = () => {
-         Notifications.setNotificationHandler({
-             handleNotification: async () => ({
-                shouldShowAlert: true,
-                shouldPlaySound: false,
-                shouldSetBadge: false,
+    static setNotificationHandler = (shouldShowAlert, shouldPlaySound, shouldSetBadge) => {
+        Notifications.setNotificationHandler({
+            handleNotification: async () => ({
+                shouldShowAlert: shouldShowAlert,
+                shouldPlaySound: shouldPlaySound,
+                shouldSetBadge: shouldSetBadge,
             })
         });
     }
 
-    static  setNotificationChannelAsync = (email, callback) => {
+    static setNotificationChannelAsync = ( ) => {
         // Prepare the notification channel
         Notifications.setNotificationChannelAsync('new-emails', {
-        name: 'E-mail notifications',
-        importance: Notifications.AndroidImportance.HIGH,
-        sound: 'email-sound.wav', // <- for Android 8.0+, see channelId property below
+            name: 'E-mail notifications',
+            importance: Notifications.AndroidImportance.HIGH,
+            sound: 'email-sound.wav', // <- for Android 8.0+, see channelId property below
         });
     }
 
     //ContentNotificationDTO contentC
-    static schedulePushNotification = async (contentC) => {
+    static sendNotification = async (contentC) => {
+        console.log(contentC
+            )
         await Notifications.scheduleNotificationAsync({
-        content: contentC,
-        trigger: { seconds: 2 },
+            content: contentC,
+            trigger: { seconds: 2 },
         });
     }
 
-  
+
     static registerForPushNotificationsAsync = async () => {
         let token;
-        if (Constants.isDevice) {
+        // if (Constants.isDevice) {
             const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
             let finalStatus = existingStatus;
             if (existingStatus !== 'granted') {
@@ -46,16 +48,16 @@ export class NotificationService {
                 alert('Failed to get push token for push notification!');
                 return;
             }
-            token = await this.getExpoPushTokenAsync();
-            console.log(token);
-        } else {
-            alert('Must use physical device for Push Notifications');
-        }
-    
-        if(token){
-            //Setar o token ao usuario
-            UsuarioService.getCurrentUser().set({ token }, {merge: true});
-        }
+            token = (await Notifications.getExpoPushTokenAsync()).data;
+            console.log('token', token);
+
+            if (token) {
+                //Setar o token ao usuario
+                UsuarioService.setAttrCurrentUser({token: token});
+            }
+        // } else {
+        //     alert('Must use physical device for Push Notifications');
+        // }
 
         if (Platform.OS === 'android') {
             Notifications.setNotificationChannelAsync('default', {
@@ -65,22 +67,29 @@ export class NotificationService {
                 lightColor: '#FF231F7C',
             });
         }
-    
+
         return token;
     }
 
-    static configNotification = (email, callback) => {
-        // Eg. schedule the notification
-        Notifications.scheduleNotificationAsync({
-        content: {
-            title: "You've got mail! 📬",
-            body: 'Open the notification to read them all',
-            sound: 'email-sound.wav', // <- for Android below 8.0
-        },
-        trigger: {
-            seconds: 2,
-            channelId: 'new-emails', // <- for Android 8.0+, see definition above
-        },
-        });
-    }
+
+    // static registerForPushNotificationsAsync = (userId) => {
+    //     let experienceId = undefined;
+    //     if (!Constants.manifest) {
+    //         // Absence of the manifest means we're in bare workflow
+    //         experienceId = '@username/example';
+    //     }
+    //     const expoPushToken = await Notifications.getExpoPushTokenAsync({
+    //         experienceId,
+    //     });
+    //     await fetch('https://example.com/', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //             userId,
+    //             expoPushToken,
+    //         }),
+    //     });
+    // }
 }

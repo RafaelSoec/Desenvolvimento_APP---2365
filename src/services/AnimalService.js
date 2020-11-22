@@ -16,11 +16,12 @@ export class AnimalService {
     };
 
     static  updateAnimal = (data, callback) => {  
-        FirebaseService.findById(this.path, data["id"], dataRecover => {
+        let idAnimal = data["id"];
+        FirebaseService.findById(this.path, idAnimal, dataRecover => {
             if(dataRecover){
                 FirebaseService.getInstanceFirebase().firestore()
                 .collection(this.path)
-                .doc(idAnimal).update(data["id"])
+                .doc(idAnimal).update(data)
                 .then((doc) => {
                     console.log(`Animal atualizado.`);
                     callback(doc.data());

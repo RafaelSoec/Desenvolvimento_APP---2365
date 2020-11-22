@@ -25,6 +25,7 @@
     "android": {
       "useNextNotificationsApi": true,
       "package": "com.devapp.meau"
-    }
+    },
+    "description": ""
   }
 }

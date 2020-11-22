@@ -1,36 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 import LogoMeau from '../../../assets/marca-meau.png';
-import {  Text  } from 'react-native'
-import { 
-  Container, 
-  Greeting, 
-  AboutText, 
-  Button,   
-  ButtonText, 
-  LoginLink, 
-  LoginText, 
-  Logo 
-} from './styles'
-import { AppLoading } from 'expo';
-import Constants from 'expo-constants';
+import {
+  Container,
+  Greeting,
+  AboutText,
+  Button,
+  ButtonText,
+  LoginLink,
+  LoginText,
+  Logo
+} from './styles';
 import * as Notifications from 'expo-notifications';
-import * as Permissions from 'expo-permissions';
+import { NotificationService } from '../../services/NotificationService.js';
 
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
-  }),
-});
-
-const IntroPage = ({navigation}) => {
+const IntroPage = ({ navigation }) => {
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
 
   useEffect(() => {
+    NotificationService.setNotificationHandler(true, true, false);
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
 
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
@@ -52,33 +42,33 @@ const IntroPage = ({navigation}) => {
       <Greeting>Olá!</Greeting>
       <AboutText>
         Bem vindo ao Meau!{`\n`}
-        Aqui você pode adotar, doar e ajudar{`\n`}
-        cães e gatos com facilidade.{`\n`}
-        Qual o seu interesse?
-      </AboutText>
+            Aqui você pode adotar, doar e ajudar{`\n`}
+            cães e gatos com facilidade.{`\n`}
+            Qual o seu interesse?
+          </AboutText>
       <Button onPress={() => navigation.toggleDrawer()}>
         <ButtonText>
           ADOTAR
-        </ButtonText>
+            </ButtonText>
       </Button>
       <Button onPress={() => navigation.navigate('AssistPage')}>
         <ButtonText>
           AJUDAR
-        </ButtonText>
+            </ButtonText>
       </Button>
       <Button onPress={() => navigation.navigate('AnimalRegistration')}>
         <ButtonText>
           CADASTRAR ANIMAL
-        </ButtonText>
+            </ButtonText>
       </Button>
-      <Button onPress={async () => { await schedulePushNotification(); }}  >
+      <Button onPress={async () => { await sendNotification(); }}  >
         <ButtonText>
           NOTIFICACAO
-        </ButtonText>
+            </ButtonText>
       </Button>
       {/* <LoginLink onPress={() => navigation.navigate('Login')}>
-        <LoginText>login</LoginText>
-      </LoginLink> */}
+            <LoginText>login</LoginText>
+          </LoginLink> */}
       <Logo source={LogoMeau}>
 
       </Logo>
@@ -86,44 +76,20 @@ const IntroPage = ({navigation}) => {
   )
 }
 
-async function schedulePushNotification() {
-  await Notifications.scheduleNotificationAsync({
-    content: {
-      title: "You've got mail! 📬",
-      body: 'Here is the notification body',
-      data: { data: 'goes here' },
-    },
-    trigger: { seconds: 2 },
-  });
+async function sendNotification() {
+  let content = {
+    to: 'ExponentPushToken[samOALEl0c9iasFohmVJt9]',
+    sound: 'default',
+    title: `Primeira Notificação`,
+    body: `Testando primeira notificação`,
+    data: { data: `dataC` },
+  };
+
+  await NotificationService.sendNotification(content);
 }
 
 async function registerForPushNotificationsAsync() {
-  let token;
-  if (Constants.isDevice) {
-    const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
-    let finalStatus = existingStatus;
-    if (existingStatus !== 'granted') {
-      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-      finalStatus = status;
-    }
-    if (finalStatus !== 'granted') {
-      alert('Failed to get push token for push notification!');
-      return;
-    }
-    token = (await Notifications.getExpoPushTokenAsync()).data;
-    console.log(token);
-  } else {
-    alert('Must use physical device for Push Notifications');
-  }
-
-  if (Platform.OS === 'android') {
-    Notifications.setNotificationChannelAsync('default', {
-      name: 'default',
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF231F7C',
-    });
-  }
+  let token = await NotificationService.registerForPushNotificationsAsync();
 
   return token;
 }

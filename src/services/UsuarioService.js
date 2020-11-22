@@ -4,9 +4,45 @@ export class UsuarioService {
     static path = "usuario";
 
 
-    static  getCurrentUser = async (data, callback) => {
+    static  getCurrentUser = async (callback) => {
+        let emailCurrentUser = FirebaseService.getInstanceFirebase().auth().currentUser.email;
+
         return await FirebaseService.getInstanceFirebase().firestore().collection('usuario')
-        .doc(FirebaseService.getInstanceFirebase().auth().currentUser.uid);
+        .where("email", "==", emailCurrentUser).get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                let data = doc.data();
+                data["id"] = doc.id;
+                console.log(data);
+                callback(data);
+            });
+        })
+        .catch((error) => { console.log(`Falha ao recuperar Usuario: ${error}`); });
+    };
+
+    static  setAttrCurrentUser = async (obj) => {
+        this.getCurrentUser(user => {
+            FirebaseService.getInstanceFirebase()
+            .firestore().collection('usuario').doc(user["id"])
+            .set(obj, {merge: true})
+            .then(function() {
+                console.log("Atributo adicionado!");
+            })
+            .catch((error) => { console.log(`Falha ao setar atributo para o Usuario: ${error}`); });
+        });
+    }
+    
+    static  addUsuario = async (data, callback) => {
+        if(data != null){
+            FirebaseService.getInstanceFirebase().firestore()
+            .collection(this.path).add(data)
+            .then((doc) => {
+                data["id"] = doc.id;
+                console.log(`Usuario adicionado.`);
+                callback(data);
+            })
+            .catch((error) => { console.log(`Falha ao adicionar Usuario: ${error}`); });
+        }
     };
 
     static  addUsuario = async (data, callback) => {
