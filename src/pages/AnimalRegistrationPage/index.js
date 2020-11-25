@@ -49,10 +49,13 @@ const AnimalRegistrationPage = ({ navigation }) => {
 
   const getTitle = () => {
     if (selectedOptions.apadrinhar) {
+      animalState.tipo = "APADRINHAR";
       return 'Apadrinhar';
     } else if (selectedOptions.adocao) {
+      animalState.tipo = "ADOCAO";
       return 'Adoção';
     } else {
+      animalState.tipo = "AJUDAR";
       return 'Ajudar';
     }
   }
@@ -105,6 +108,7 @@ const AnimalRegistrationPage = ({ navigation }) => {
   }
 
   const cadastrarAnimal = async () => {
+    console.log('hehe', animalState)
     AnimalService.addAnimal(animalState, data => {
       uploadPhoto(imageUri, data.id);
       navigation.navigate('AnimalRegistrationSuccess');
@@ -175,9 +179,9 @@ const AnimalRegistrationPage = ({ navigation }) => {
         <Label>ESPÉCIE</Label>
         <ItemOptions>
           <RadioButton.Group onValueChange={value => { setAnimalState({ ...animalState, especie: value }) }} value={animalState.especie}>
-            <RadioButton value='cachorro' />
+            <RadioButton style={{ border: '1px solid black' }} value='cachorro' />
             <Item>Cachorro</Item>
-            <RadioButton value='gato' />
+            <RadioButton style={{ border: '1px solid black' }} value='gato' />
             <Item>Gato</Item>
           </RadioButton.Group>
         </ItemOptions>
@@ -185,9 +189,9 @@ const AnimalRegistrationPage = ({ navigation }) => {
         <Label>SEXO</Label>
         <ItemOptions>
           <RadioButton.Group onValueChange={value => { setAnimalState({ ...animalState, sexo: value }) }} value={animalState.sexo}>
-            <RadioButton value='macho' />
+            <RadioButton style={{ border: '1px solid black' }} value='macho' />
             <Item>Macho</Item>
-            <RadioButton value='femea' />
+            <RadioButton style={{ border: '1px solid black' }} value='femea' />
             <Item>Fêmea</Item>
           </RadioButton.Group>
         </ItemOptions>
@@ -195,11 +199,11 @@ const AnimalRegistrationPage = ({ navigation }) => {
         <Label>PORTE</Label>
         <ItemOptions>
           <RadioButton.Group onValueChange={value => { setAnimalState({ ...animalState, tamanho: value }) }} value={animalState.tamanho}>
-            <RadioButton value='pequeno' />
+            <RadioButton style={{ border: '1px solid black' }} value='pequeno' />
             <Item>Pequeno</Item>
-            <RadioButton value='medio' />
+            <RadioButton style={{ border: '1px solid black' }} value='medio' />
             <Item>Médio</Item>
-            <RadioButton value='grande' />
+            <RadioButton style={{ border: '1px solid black' }} value='grande' />
             <Item>Grande</Item>
           </RadioButton.Group>
         </ItemOptions>
@@ -207,11 +211,11 @@ const AnimalRegistrationPage = ({ navigation }) => {
         <Label>IDADE</Label>
         <ItemOptions>
           <RadioButton.Group onValueChange={value => { setAnimalState({ ...animalState, idade: value }) }} value={animalState.idade}>
-            <RadioButton value='filhote' />
+            <RadioButton style={{ border: '1px solid black' }} value='filhote' />
             <Item>Filhote</Item>
-            <RadioButton value='adulto' />
+            <RadioButton style={{ border: '1px solid black' }} value='adulto' />
             <Item>Adulto</Item>
-            <RadioButton value='idoso' />
+            <RadioButton style={{ border: '1px solid black' }} value='idoso' />
             <Item>Idoso</Item>
           </RadioButton.Group>
         </ItemOptions>

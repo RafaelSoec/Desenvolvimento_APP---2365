@@ -5,19 +5,22 @@ export class UsuarioService {
 
 
     static  getCurrentUser = async (callback) => {
-        let emailCurrentUser = FirebaseService.getInstanceFirebase().auth().currentUser.email;
-
-        return await FirebaseService.getInstanceFirebase().firestore().collection('usuario')
-        .where("email", "==", emailCurrentUser).get()
-        .then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-                let data = doc.data();
-                data["id"] = doc.id;
-                console.log(data);
-                callback(data);
-            });
-        })
-        .catch((error) => { console.log(`Falha ao recuperar Usuario: ${error}`); });
+        let currentUser = FirebaseService.getInstanceFirebase().auth().currentUser;
+        if(currentUser != null){
+            let emailCurrentUser = currentUser.email;
+    
+            return await FirebaseService.getInstanceFirebase().firestore().collection('usuario')
+            .where("email", "==", emailCurrentUser).get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    let data = doc.data();
+                    data["id"] = doc.id;
+                    console.log(data);
+                    callback(data);
+                });
+            })
+            .catch((error) => {  alert(`Falha ao recuperar Usuario: ${error}`); });
+        }
     };
 
     static  setAttrCurrentUser = async (obj) => {
@@ -28,7 +31,7 @@ export class UsuarioService {
             .then(function() {
                 console.log("Atributo adicionado!");
             })
-            .catch((error) => { console.log(`Falha ao setar atributo para o Usuario: ${error}`); });
+            .catch((error) => {  alert(`Falha ao setar atributo para o Usuario: ${error}`); });
         });
     }
     
@@ -41,7 +44,7 @@ export class UsuarioService {
                 console.log(`Usuario adicionado.`);
                 callback(data);
             })
-            .catch((error) => { console.log(`Falha ao adicionar Usuario: ${error}`); });
+            .catch((error) => {  alert(`Falha ao adicionar Usuario: ${error}`); });
         }
     };
 
@@ -54,7 +57,7 @@ export class UsuarioService {
                 console.log(`Usuario adicionado.`);
                 callback(data);
             })
-            .catch((error) => { console.log(`Falha ao adicionar Usuario: ${error}`); });
+            .catch((error) => {  alert(`Falha ao adicionar Usuario: ${error}`); });
         }
     };
 
@@ -68,9 +71,9 @@ export class UsuarioService {
                         console.log(`Usuario atualizado.`);
                         callback(doc.data());
                     })
-                    .catch((error) => { console.log(`Falha ao atualizar Usuario: ${error}`); });
+                    .catch((error) => {  alert(`Falha ao atualizar Usuario: ${error}`); });
             } else {
-                console.log(`Nao foi possivel recuperar o Usuario.`);
+                alert(`Nao foi possivel recuperar o Usuario.`);
                 callback(null);
             }
         });
@@ -85,9 +88,9 @@ export class UsuarioService {
                     .then((doc) => {
                         console.log("Usuario removido.");
                     })
-                    .catch((error) => { console.log(`Falha ao remover Usuario: ${error}`); });
+                    .catch((error) => {  alert(`Falha ao remover Usuario: ${error}`); });
             } else {
-                console.log(`Nao foi possivel recuperar o Usuario.`);
+                alert(`Nao foi possivel recuperar o Usuario.`);
             }
         });
     };

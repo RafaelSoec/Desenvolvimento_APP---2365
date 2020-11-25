@@ -26,8 +26,7 @@ export class NotificationService {
 
     //ContentNotificationDTO contentC
     static sendNotification = async (contentC) => {
-        console.log(contentC
-            )
+        console.log(contentC)
         await Notifications.scheduleNotificationAsync({
             content: contentC,
             trigger: { seconds: 2 },

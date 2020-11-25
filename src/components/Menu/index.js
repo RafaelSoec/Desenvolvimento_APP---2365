@@ -12,13 +12,24 @@ import {
   AvatarImage
 } from './styles'
 import { AuthService } from '../../services/AuthService'
+import { UsuarioService } from '../../services/UsuarioService.js';
+import UsuarioDTO from '../../dto/UsuarioDTO';
 
 const accordionText = { color: '#434343', fontFamily: 'Roboto-Medium' }
 const itemText = { color: '#434343', fontFamily: 'Roboto-Regular' }
 
 const Menu = ({ navigation, props }) => {
+  let usuario = new UsuarioDTO();
+
+  useEffect(() => {
+    // UsuarioService.getCurrentUser(user => {
+    //   usuario = user;
+    // });
+  });
+
   const getImageUrl = () => {    
-    firebase.storage().ref('usuarios/' + firebase.auth().currentUser.email).getDownloadURL().then(url => {setUrl(url)});
+    firebase.storage().ref('usuarios/' + firebase.auth().currentUser.email).getDownloadURL().then(url => {
+      setUrl(url)});
   }
 
   const [finalUrl, setUrl] = useState('https://source.unsplash.com/random?user');
@@ -30,10 +41,16 @@ const Menu = ({ navigation, props }) => {
           <AvatarImage source={{uri: finalUrl}}/>        
         </AvatarContainer>
         <Accordion
+          left={(props) => <List.Icon {...props} icon='home' />}
+          titleStyle={accordionText}
+          title="Home"
+          style={{ backgroundColor: '#fee29b' }} onPress={() => navigation.navigate('IntroPage')}>
+        </Accordion>
+        <Accordion
           left={(props) => <List.Icon {...props} icon='account' />}
           titleStyle={accordionText}
-          title="Nome do usuario"
-          style={{ backgroundColor: '#88c9bf' }}>
+          title="Perfil"
+          style={{ backgroundColor: '#fee29b' }}>
           <ListItem title="Meu perfil" onPress={() => {getImageUrl(); console.log(finalUrl)}}/>
           <ListItem title="Meus pets" onPress={() => navigation.navigate('MyPets')} />
           <ListItem title="Favoritos" />
@@ -42,7 +59,7 @@ const Menu = ({ navigation, props }) => {
         <Accordion
           left={(props) => <List.Icon {...props} icon='paw' />}
           titleStyle={accordionText}
-          title="Atalhos"
+          title="Pets"
           style={{ backgroundColor: '#fee29b' }}>
           <ListItem title="Cadastrar um pet" onPress={() => navigation.navigate('AnimalRegistration')} />
           <ListItem title="Adotar um pet" onPress={() => navigation.navigate('Adopt')} />
@@ -54,7 +71,7 @@ const Menu = ({ navigation, props }) => {
 
           titleStyle={accordionText}
           title="Atalhos"
-          style={{ backgroundColor: '#cfe9e5' }}>
+          style={{ backgroundColor: '#e6e7e8' }}>
           <ListItem title="Dicas" />
           <ListItem title="Eventos" />
           <ListItem title="Legislação" />

@@ -44,7 +44,6 @@ export default class LoginPage extends Component {
 
     logIn = () => {
         AuthService.login(this.state.email, this.state.password, res => {
-            console.log(res.message);
             if (res.result) {
                 this.props.navigation.navigate('IntroPage');
             }

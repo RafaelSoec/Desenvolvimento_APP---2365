@@ -3,6 +3,7 @@ import { FirebaseService } from './FirebaseService.js';
 export class AuthService {
 
     static  login = (email, password, callback) => {
+        console.log('ei');
         const auth = FirebaseService.getInstanceFirebase().auth();
         auth.signInWithEmailAndPassword(email, password)
         .then((res) => {
@@ -10,7 +11,8 @@ export class AuthService {
             callback({result: res, message: `Login realizado com sucesso.`});
         })
         .catch((error) => {
-            console.log(error['message']); 
+            console.log('ei', error['message']); 
+            alert(error['message']); 
             callback({result: null, message: error['message']});
         });
     };
@@ -23,7 +25,7 @@ export class AuthService {
         })
         .catch((error) => {
             callback({result: false, message: error['message']});
-            console.log(error['message']); 
+            alert(error['message']); 
         });
     };
 
@@ -36,7 +38,7 @@ export class AuthService {
         })
         .catch((error) => {
             callback({result: false, message: error['message']});
-            console.log(error['message']); 
+            alert(error['message']); 
         });
     };
 

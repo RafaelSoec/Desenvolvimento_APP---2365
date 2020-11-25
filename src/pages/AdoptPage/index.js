@@ -11,8 +11,9 @@ const AdoptPage = ({navigation}) => {
   const [currentUser, setCurrentUser] = useState('');
 
   const getPets = async () => {
+    console.log('oi')
     const email = firebase.auth().currentUser.email
-    const data = await firebase.firestore().collection('animal').where('tipo', '==', 'ADOÇÃO').where('userEmail', '!=', email).get()
+    const data = await firebase.firestore().collection('animal').where('tipo', '==', 'ADOCAO').where('userEmail', '!=', email).get()
     const list = data.docs.map(item => {return {data: item.data(), id: item.id}})
     console.log(list)
     setCurrentUser(email)
@@ -26,7 +27,7 @@ const AdoptPage = ({navigation}) => {
   return (
     <Container>
       {petsList && petsList.map(pet => (
-        <PetCard key={pet.id} current={currentUser} id={pet.id} age={pet.data.idade} name={pet.data.nome} size={pet.data.tamanho} sex={pet.data.sexo} location={'Brasilia'}/>
+        <PetCard key={pet.id} current={currentUser} owner={pet.data.userEmail} id={pet.id} age={pet.data.idade} name={pet.data.nome} size={pet.data.tamanho} sex={pet.data.sexo} location={'Brasilia'}/>
       ))}
     </Container>
   )
