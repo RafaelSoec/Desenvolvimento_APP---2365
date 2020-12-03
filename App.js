@@ -6,7 +6,6 @@ import * as Font from 'expo-font';
 import firebase from 'firebase';
 import { Enviromment } from './src/enviromment.js';
 
-<<<<<<< HEAD
 export default class App extends Component {
   customFonts = {
     'Roboto-Medium': require('./assets/fonts/Roboto/Roboto-Medium.ttf'),
@@ -52,22 +51,3 @@ export default class App extends Component {
     )
   }
 }
-=======
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hello Test</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
->>>>>>> master
