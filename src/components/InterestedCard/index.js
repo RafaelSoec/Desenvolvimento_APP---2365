@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import firebase from 'firebase'
-import {Container, ImageContainer, InfoText, AcceptButton, DeleteButton} from './styles'
+import firebase, { firestore } from 'firebase'
+import {Container, Avatar, InfoText, AcceptButton, DeleteButton} from './styles'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { Text, Image, View } from 'react-native'
 
-const InterestedCard = ({id, ...props}) => {
+const InterestedCard = ({id, name, email, pet, navigation}) => {
 
   const [avatarUrl, setAvatarUrl] = useState('')
   
   const getImageUrl = async () => {    
-    const url = await firebase.storage().ref('usuarios/' + id).getDownloadURL();
-    console.log(url)
+    const url = await firebase.storage().ref('usuarios/' + email).getDownloadURL();
     setAvatarUrl(url)
+  }
+
+  const transferPet = async () => {
+    await firestore().collection('animal').doc(pet.id).update({userId: id, userEmail: email, tipo: 'ADOTADO'});
+    navigation.navigate('IntroPage')
   }
 
   useEffect(() => {
@@ -19,13 +23,10 @@ const InterestedCard = ({id, ...props}) => {
   }, [])
 
   return (
-    <Container style={{ elevation: 5, borderColor: '#000' }}>
-      <ImageContainer>
-        <Image source={{uri: avatarUrl}}  />
-      </ImageContainer>
-      <InfoText>Usuario id: {id}</InfoText>
-      <AcceptButton><Text>Aceitar</Text></AcceptButton>
-      <DeleteButton><Text>Excluir</Text></DeleteButton>
+    <Container>      
+      <Avatar source={{uri: avatarUrl}}  />
+      <InfoText>{name}</InfoText>
+      <AcceptButton onPress={transferPet}><Text style={{color: 'white'}}>Aceitar</Text></AcceptButton>
     </Container>
   )
 }

@@ -27,7 +27,6 @@ export class NotificationService {
     //ContentNotificationDTO contentC
     static sendNotification = async (contentC) => {
         console.log(contentC)
-
         let response = fetch('https://exp.host/--/api/v2/push/send', {
             method: 'POST',
             headers: {
@@ -36,12 +35,10 @@ export class NotificationService {
             },
             body: JSON.stringify(contentC)
         })
-
-        /* 
-        await Notifications.scheduleNotificationAsync({
-            content: contentC,
-            trigger: { seconds: 2 },
-        }); */
+        // await Notifications.scheduleNotificationAsync({
+        //     content: contentC,
+        //     trigger: { seconds: 2 },
+        // });
     }
 
 

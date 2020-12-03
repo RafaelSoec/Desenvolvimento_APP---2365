@@ -46,12 +46,12 @@ const IntroPage = ({ navigation }) => {
             cães e gatos com facilidade.{`\n`}
             Qual o seu interesse?
           </AboutText>
-      <Button onPress={() => navigation.toggleDrawer()}>
+      <Button onPress={() => navigation.navigate('Adopt')}>
         <ButtonText>
           ADOTAR
             </ButtonText>
       </Button>
-      <Button onPress={() => navigation.navigate('AssistPage')}>
+      <Button onPress={() => navigation.navigate('Help')}>
         <ButtonText>
           AJUDAR
             </ButtonText>
@@ -59,11 +59,6 @@ const IntroPage = ({ navigation }) => {
       <Button onPress={() => navigation.navigate('AnimalRegistration')}>
         <ButtonText>
           CADASTRAR ANIMAL
-            </ButtonText>
-      </Button>
-      <Button onPress={async () => { await sendNotification(); }}  >
-        <ButtonText>
-          NOTIFICACAO
             </ButtonText>
       </Button>
       {/* <LoginLink onPress={() => navigation.navigate('Login')}>

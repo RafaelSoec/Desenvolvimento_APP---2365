@@ -6,32 +6,42 @@ import { Image, Text, View } from 'react-native';
 import { UsuarioService } from '../../services/UsuarioService.js';
 import { NotificationService } from '../../services/NotificationService.js';
 import UsuarioDTO from '../../dto/UsuarioDTO';
+import { AnimalService } from '../../services/AnimalService';
 
-const PetCard = ({owner, name, age, sex, location, size, id}) => {
+const PetCard = ({owner, name, age, sex, location, size, id, current}) => {
 
   const [avatarUrl, setAvatarUrl] = useState('https://source.unsplash.com/random?dog,cat')
   
   const getImageUrl = async () => {    
     const url = await firebase.storage().ref('animals/' + id).getDownloadURL();
-    console.log(url)
     setAvatarUrl(url)
   }
 
   useEffect(() => {
     getImageUrl();
+    
   }, [])
 
-  const selectAnimal =  () =>{
+  const selectAnimal = async () =>{
     let usuario = new UsuarioDTO();
     if(owner){
-      usuario = owner;
+      const userRes = await firebase.firestore().collection('usuario').where('email', '==', owner).get()
+      const user = userRes.docs.pop().data();
+      const currentRes = await firebase.firestore().collection('usuario').where('email', '==', current).get()
+      const currentUser = currentRes.docs.map(usuario => {
+        return {id: usuario.id, nome: usuario.data().nome, email: usuario.data().email} 
+      })
+
+      await firebase.firestore().collection('animal')
+        .doc(id)
+        .collection('interessados')
+        .add(currentUser[0])
       
       let content = {
-        to: usuario.token,
+        to: user.token,
         sound: 'default',
         title: `Aviso de adoção`,
-        body: `Alguem tem interesse no seu pet!!`,
-        data: { data: `dataC` },
+        body: `Alguem tem interesse no(a) ${name}!!`,
       };
     
       NotificationService.sendNotification(content);

@@ -26,7 +26,7 @@ const MyPetsPage = ({navigation}) => {
       {myPets && myPets.map(pet => (
         <MyPetCard key={pet.id} id={pet.id} interested={'X'} 
         name={pet.data.nome} sections={pet.data.tipo} 
-        onPress={() => {navigation.navigate('InfoPetPage', {pet}); console.log("AUAUAU")}} />
+        onPress={() => {navigation.navigate('InfoPetPage', {pet})}} />
       ))}
     </Container>
   )

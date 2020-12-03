@@ -9,7 +9,6 @@ const MyPetCard = ({name, color, sections, interested, id, ...props}) => {
   
   const getImageUrl = async () => {    
     const url = await firebase.storage().ref('animals/' + id).getDownloadURL();
-    console.log(url)
     setAvatarUrl(url)
   }
 
