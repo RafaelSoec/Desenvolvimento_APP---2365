@@ -1,17 +1,35 @@
+import { firestore } from 'firebase';
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-paper';
 import InterestedCard from '../../components/InterestedCard/index.js';
 import { Container } from './styles.js';
 
 
 const InterestedPage = ({route, navigation}) => {
-    pet = route.params.pet;
+    
+    const [interested, setInterested] = useState([]);
+
+    const getInterested = async () => {
+        const interestedRes = await firestore()
+            .collection('animal')
+            .doc(route.params.pet.id)
+            .collection('interessados').get();
+        const interessados = interestedRes.docs.map(int => {return {...int.data()}})
+        console.log(interessados)
+        setInterested([...interessados]);
+    }
+
+    useEffect(() => {
+        getInterested();
+    }, [])    
 
     return (
         <Container>
-            <Text>Interessados em {pet.data.nome}: { () => pet.data.interessado.length()}</Text>
-            <InterestedCard id={"algumId"}/>
+            <Text style={{fontSize: 16}}>Interessados em {pet.data.nome}: {interested.length}</Text>           
+            {interested && interested.map(item => (
+                <InterestedCard  navigation={navigation} email={item.email} name={item.nome} id={item.id} pet={route.params.pet} />
+            ))}
         </Container>
     )
 }
