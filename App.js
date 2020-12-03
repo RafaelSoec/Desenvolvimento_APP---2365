@@ -40,7 +40,7 @@ export default class App extends Component {
 
   render() {
     // para disabilitar os warnings
-    // console.disableYellowBox = ['Setting a timer'];
+    console.disableYellowBox = ['Setting a timer'];
 
     if (!this.state.fontsLoaded) {
       return <AppLoading />

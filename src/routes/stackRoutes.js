@@ -218,7 +218,7 @@ const StackRoutes = ({ navigation }) => {
         },
       }} />
       <Stack.Screen name="AssistPage" component={AssistPage} options={{
-        title: 'Cadastro do Animal',
+        title: 'Ajudar',
         headerStyle: {
           backgroundColor: '#ffd358',
         },

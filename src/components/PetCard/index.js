@@ -14,7 +14,6 @@ const PetCard = ({owner, name, age, sex, location, size, id, current}) => {
   
   const getImageUrl = async () => {    
     const url = await firebase.storage().ref('animals/' + id).getDownloadURL();
-    console.log(url)
     setAvatarUrl(url)
   }
 
@@ -32,8 +31,6 @@ const PetCard = ({owner, name, age, sex, location, size, id, current}) => {
       const currentUser = currentRes.docs.map(usuario => {
         return {id: usuario.id, nome: usuario.data().nome, email: usuario.data().email} 
       })
-      console.log('aaaaaaaaaaaaaaaaaaaaaaaa')
-      console.log(currentUser)
 
       await firebase.firestore().collection('animal')
         .doc(id)

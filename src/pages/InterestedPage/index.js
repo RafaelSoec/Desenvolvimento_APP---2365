@@ -7,6 +7,8 @@ import { Container } from './styles.js';
 
 
 const InterestedPage = ({route, navigation}) => {
+
+    console.log(route.params)
     
     const [interested, setInterested] = useState([]);
 
@@ -26,7 +28,7 @@ const InterestedPage = ({route, navigation}) => {
 
     return (
         <Container>
-            <Text style={{fontSize: 16}}>Interessados em {pet.data.nome}: {interested.length}</Text>           
+            <Text style={{fontSize: 16}}>Interessados em {route.params.pet.data.nome}: {interested.length}</Text>           
             {interested && interested.map(item => (
                 <InterestedCard  navigation={navigation} email={item.email} name={item.nome} id={item.id} pet={route.params.pet} />
             ))}

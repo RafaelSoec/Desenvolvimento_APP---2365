@@ -10,7 +10,6 @@ const InterestedCard = ({id, name, email, pet, navigation}) => {
   
   const getImageUrl = async () => {    
     const url = await firebase.storage().ref('usuarios/' + email).getDownloadURL();
-    console.log(url)
     setAvatarUrl(url)
   }
 

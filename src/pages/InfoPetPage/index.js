@@ -33,7 +33,7 @@ const InfoPetPage = ({route, navigation}) => {
                 <PetImage source={{uri: avatarUrl}} />
             </ImageContainer>
             <DataContainer>
-            <Text style={{fontSize: '26px',color: '#434343'}}>{pet.data.nome}</Text>
+            <Text style={{fontSize: 26,color: '#434343'}}>{pet.data.nome}</Text>
                 <DataStrip>
                     <Data>
                         <DataHeader>SEXO</DataHeader>
@@ -92,14 +92,16 @@ const InfoPetPage = ({route, navigation}) => {
                         </DataText>
                     </Data>
                 </DataStrip>
+                {pet.data.tipo != 'ADOTADO' && 
                 <DataStrip style={{justifyContent:"space-around"}}>
-                    <StyledButton title="Interessados" onPress={() => navigation.navigate('InterestedPage', {pet})} >
+                    <StyledButton title="Interessados" onPress={() => navigation.navigate('InterestedPage', {pet: route.params.pet})} >
                         <ButtonText>VER INTERESSADOS</ButtonText>
                     </StyledButton>
                     <StyledButton title="Remover" >
                         <ButtonText>REMOVER PET</ButtonText>
                     </StyledButton>
-                </DataStrip>
+                </DataStrip>}
+                
             </DataContainer>
         </ScrollView>
     );

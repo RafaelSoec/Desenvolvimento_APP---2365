@@ -44,13 +44,13 @@ const Menu = ({ navigation, props }) => {
           left={(props) => <List.Icon {...props} icon='home' />}
           titleStyle={accordionText}
           title="Home"
-          style={{ backgroundColor: '#fee29b' }} onPress={() => navigation.navigate('IntroPage')}>
+          style={{ backgroundColor: '#88c9bf' }} onPress={() => navigation.navigate('IntroPage')}>
         </Accordion>
         <Accordion
           left={(props) => <List.Icon {...props} icon='account' />}
           titleStyle={accordionText}
           title="Perfil"
-          style={{ backgroundColor: '#fee29b' }}>
+          style={{ backgroundColor: '#88c9bf' }}>
           <ListItem title="Meu perfil" onPress={() => {getImageUrl(); console.log(finalUrl)}}/>
           <ListItem title="Meus pets" onPress={() => navigation.navigate('MyPets')} />
           <ListItem title="Favoritos" />
@@ -86,7 +86,6 @@ const Menu = ({ navigation, props }) => {
         </Accordion>
       </ScrollView>
       <ExitButton onPress={() => {AuthService.logout(res => {
-            console.log(res.message);
             if(res.result){
                 this.props.navigation.navigate('IntroPage');
             }

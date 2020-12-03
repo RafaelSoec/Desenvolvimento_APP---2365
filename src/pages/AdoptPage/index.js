@@ -11,11 +11,9 @@ const AdoptPage = ({navigation}) => {
   const [currentUser, setCurrentUser] = useState('');
 
   const getPets = async () => {
-    console.log('oi')
     const email = firebase.auth().currentUser.email
     const data = await firebase.firestore().collection('animal').where('tipo', '==', 'ADOCAO').where('userEmail', '!=', email).get()
     const list = data.docs.map(item => {return {data: item.data(), id: item.id}})
-    console.log(list)
     setCurrentUser(email)
     setMyPets(list);
   }
