@@ -23,6 +23,9 @@ const InfoPetPage = ({route, navigation}) => {
       }
 
     useEffect( () => {
+        if(route.params.type === 'ADOPT'){
+            navigation.setOptions({headerStyle: {backgroundColor: '#ffd358'}})
+        }
         navigation.setOptions({title: pet.data.nome})
         getImageUrl();
     }, [])
@@ -92,7 +95,7 @@ const InfoPetPage = ({route, navigation}) => {
                         </DataText>
                     </Data>
                 </DataStrip>
-                {pet.data.tipo != 'ADOTADO' && 
+                {pet.data.tipo != 'ADOTADO' && route.params.type != 'ADOPT' && 
                 <DataStrip style={{justifyContent:"space-around"}}>
                     <StyledButton title="Interessados" onPress={() => navigation.navigate('InterestedPage', {pet: route.params.pet})} >
                         <ButtonText>VER INTERESSADOS</ButtonText>

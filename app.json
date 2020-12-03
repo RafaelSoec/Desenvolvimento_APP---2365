@@ -23,6 +23,7 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "useNextNotificationsApi": true,
       "package": "com.devapp.meau"
     },

@@ -8,7 +8,7 @@ import { NotificationService } from '../../services/NotificationService.js';
 import UsuarioDTO from '../../dto/UsuarioDTO';
 import { AnimalService } from '../../services/AnimalService';
 
-const PetCard = ({owner, name, age, sex, location, size, id, current}) => {
+const PetCard = ({owner, name, age, sex, location, size, id, current, info}) => {
 
   const [avatarUrl, setAvatarUrl] = useState('https://source.unsplash.com/random?dog,cat')
   
@@ -49,7 +49,7 @@ const PetCard = ({owner, name, age, sex, location, size, id, current}) => {
   }
   
   return (
-    <Container style={{ elevation: 5, borderColor: '#000' }}>
+    <Container style={{ elevation: 5, borderColor: '#000' }} onPress={info} >
       <Header>
         <PetName>
           {name}

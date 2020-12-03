@@ -25,7 +25,17 @@ const AdoptPage = ({navigation}) => {
   return (
     <Container>
       {petsList && petsList.map(pet => (
-        <PetCard key={pet.id} current={currentUser} owner={pet.data.userEmail} id={pet.id} age={pet.data.idade} name={pet.data.nome} size={pet.data.tamanho} sex={pet.data.sexo} location={'Brasilia'}/>
+        <PetCard key={pet.id} 
+          current={currentUser} 
+          owner={pet.data.userEmail} 
+          id={pet.id} 
+          age={pet.data.idade} 
+          name={pet.data.nome} 
+          size={pet.data.tamanho} 
+          sex={pet.data.sexo} 
+          location={'Brasilia'}
+          info={() => {navigation.navigate('InfoPetPage', {pet: pet, type: 'ADOPT'})}}
+        />
       ))}
     </Container>
   )

@@ -1,7 +1,7 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
 
-export const Container = styled(View)`
+export const Container = styled(TouchableOpacity)`
   margin: 8px 0;
   /* border-radius: 100px; */
 `;
