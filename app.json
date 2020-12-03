@@ -1,7 +1,12 @@
 {
   "expo": {
+<<<<<<< HEAD
     "name": "Meau",
     "slug": "Meau",
+=======
+    "name": "Desenvolvimento_APP---2365",
+    "slug": "Desenvolvimento_APP---2365",
+>>>>>>> master
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
