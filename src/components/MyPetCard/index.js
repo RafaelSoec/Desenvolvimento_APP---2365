@@ -3,7 +3,7 @@ import firebase from 'firebase'
 import {Container, Header, PetName, PetImage, PetInfo, InfoText} from './styles'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
-const MyPetCard = ({name, color, sections, interested, id}) => {
+const MyPetCard = ({name, color, sections, interested, id, ...props}) => {
 
   const [avatarUrl, setAvatarUrl] = useState('https://source.unsplash.com/random?dog,cat')
   
@@ -18,7 +18,7 @@ const MyPetCard = ({name, color, sections, interested, id}) => {
   }, [])
 
   return (
-    <Container style={{ elevation: 5, borderColor: '#000' }}>
+    <Container style={{ elevation: 5, borderColor: '#000' }} {...props}>
       <Header>
         <PetName>
           {name}

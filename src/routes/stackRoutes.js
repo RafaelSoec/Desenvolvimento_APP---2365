@@ -14,6 +14,8 @@ import MyPetsPage from '../pages/MyPetsPage';
 import AdoptPage from '../pages/AdoptPage';
 import HelpPage from '../pages/HelpPage';
 import PatronizePage from '../pages/PatronizePage';
+import InfoPetPage from '../pages/InfoPetPage';
+import InterestedPage from '../pages/InterestedPage';
 
 const Stack = createStackNavigator();
 
@@ -38,6 +40,28 @@ const StackRoutes = ({ navigation }) => {
       <Stack.Screen name="SignUpPage" component={SingUpPage} options={{
         headerShown: true,
         title: 'Cadastro',
+        headerStyle: {
+          backgroundColor: '#88c9bf',
+        },
+        headerTintColor: '#434343',
+        headerTitleStyle: {
+          fontSize: 20
+        },
+      }} />
+
+      <Stack.Screen name="InfoPetPage" component={InfoPetPage} options={{
+        title: 'PET',
+        headerStyle: {
+          backgroundColor: '#88c9bf',
+        },
+        headerTintColor: '#434343',
+        headerTitleStyle: {
+          fontSize: 20
+        },
+      }} />
+
+      <Stack.Screen name="InterestedPage" component={InterestedPage} options={{
+        title: 'Interessados',
         headerStyle: {
           backgroundColor: '#88c9bf',
         },

@@ -3,8 +3,10 @@ import firebase from 'firebase'
 import { TouchableOpacity } from 'react-native'
 import MyPetCard from '../../components/MyPetCard'
 import {Container} from './styles'
+import InfoPetPage from '../InfoPetPage'
 
-const MyPetsPage = () => {
+
+const MyPetsPage = ({navigation}) => {
 
   const [myPets, setMyPets] = useState([]);
 
@@ -22,7 +24,9 @@ const MyPetsPage = () => {
   return (
     <Container >
       {myPets && myPets.map(pet => (
-        <MyPetCard key={pet.id} id={pet.id} interested={'X'} name={pet.data.nome} sections={pet.data.tipo}/>
+        <MyPetCard key={pet.id} id={pet.id} interested={'X'} 
+        name={pet.data.nome} sections={pet.data.tipo} 
+        onPress={() => {navigation.navigate('InfoPetPage', {pet}); console.log("AUAUAU")}} />
       ))}
     </Container>
   )
