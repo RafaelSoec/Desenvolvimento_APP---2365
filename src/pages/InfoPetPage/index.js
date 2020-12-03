@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Image, Text, View} from 'react-native';
 import { Button } from 'react-native-paper';
-import { ImageContainer, DataContainer } from './styles.js';
+import { ImageContainer, DataContainer, PetImage } from './styles.js';
 import firebase from 'firebase';
 
 
@@ -26,10 +26,9 @@ const InfoPetPage = ({route, navigation}) => {
     return (
         <>
             <ImageContainer>
+                <PetImage source={{uri: avatarUrl}} />
             </ImageContainer>
-                <Image source={{uri: avatarUrl}} />
             <DataContainer>
-            <Text>{avatarUrl}</Text>
                 <Button onPress={() => navigation.navigate('InterestedPage', {pet})} >Ver Interessados</Button>
             </DataContainer>
         </>

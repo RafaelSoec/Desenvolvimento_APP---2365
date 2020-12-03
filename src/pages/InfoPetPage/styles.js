@@ -1,5 +1,5 @@
 import React from 'react';
-import { View} from 'react-native';
+import { View, Image} from 'react-native';
 import styled from 'styled-components';
 
 
@@ -9,6 +9,10 @@ export const DataContainer = styled(View)`
 
 export const ImageContainer = styled(View)`
     width: 100%;
-    height: 150px;
     overflow: hidden;
+`;
+
+export const PetImage = styled(Image)`
+  width: 100%;
+  height: 183px;
 `;

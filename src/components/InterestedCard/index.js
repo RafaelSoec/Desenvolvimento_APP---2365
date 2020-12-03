@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import firebase from 'firebase'
-import {Container, Header, PetName, PetImage, PetInfo, InfoText} from './styles'
+import {Container, InterestedImage, InfoText} from './styles'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
 const InterestedCard = ({id, ...props}) => {
@@ -8,7 +8,7 @@ const InterestedCard = ({id, ...props}) => {
   const [avatarUrl, setAvatarUrl] = useState('')
   
   const getImageUrl = async () => {    
-    const url = await firebase.storage().ref('users/' + id).getDownloadURL();
+    const url = await firebase.storage().ref('usuarios/' + id).getDownloadURL();
     console.log(url)
     setAvatarUrl(url)
   }
@@ -19,7 +19,10 @@ const InterestedCard = ({id, ...props}) => {
 
   return (
     <Container style={{ elevation: 5, borderColor: '#000' }}>
-      <Image source={{uri: avatarUrl}} />
+      <InterestedImage source={{uri: avatarUrl}} />
+      <InfoText></InfoText>
+      <AcceptButton>Aceitar</AcceptButton>
+      <DeleteButton>Excluir</DeleteButton>
     </Container>
   )
 }
