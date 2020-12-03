@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import firebase from 'firebase'
-import {Container, InterestedImage, InfoText} from './styles'
+import {Container, ImageContainer, InfoText, AcceptButton, DeleteButton} from './styles'
 import Icon from 'react-native-vector-icons/FontAwesome5'
+import { Text, Image, View } from 'react-native'
 
 const InterestedCard = ({id, ...props}) => {
 
@@ -19,10 +20,12 @@ const InterestedCard = ({id, ...props}) => {
 
   return (
     <Container style={{ elevation: 5, borderColor: '#000' }}>
-      <InterestedImage source={{uri: avatarUrl}} />
-      <InfoText></InfoText>
-      <AcceptButton>Aceitar</AcceptButton>
-      <DeleteButton>Excluir</DeleteButton>
+      <ImageContainer>
+        <Image source={{uri: avatarUrl}}  />
+      </ImageContainer>
+      <InfoText>Usuario id: {id}</InfoText>
+      <AcceptButton><Text>Aceitar</Text></AcceptButton>
+      <DeleteButton><Text>Excluir</Text></DeleteButton>
     </Container>
   )
 }

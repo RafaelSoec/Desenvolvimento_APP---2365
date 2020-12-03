@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { Button } from 'react-native-paper';
 import InterestedCard from '../../components/InterestedCard/index.js';
 import { Container } from './styles.js';
 
 
 const InterestedPage = ({route, navigation}) => {
-
-
+    pet = route.params.pet;
 
     return (
         <Container>
